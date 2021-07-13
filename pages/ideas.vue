@@ -7,7 +7,7 @@
     </v-row>
     <v-row class="text-center">
       <v-col>
-        <v-btn @click="refreshIdeas">
+        <v-btn @click="getIdeas">
           <v-icon>mdi-refresh</v-icon>
         </v-btn>
       </v-col>
@@ -37,7 +37,7 @@ export default {
   //   token: this.$auth.$storage.getLocalStorage('token'),
   // }),
   methods: {
-    async refreshIdeas() {
+    async getIdeas() {
       this.ideas = await this.$axios.$get('/ideas')
     },
   },
