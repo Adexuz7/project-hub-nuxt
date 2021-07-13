@@ -42,12 +42,15 @@
 
 <script>
 export default {
+  props: {
+    comment: {
+      type: Object,
+      default: null
+    },
+  },
   data: () => ({
     author: '',
   }),
-  props: {
-    comment: {},
-  },
   computed: {
     date() {
       return new Date(this.comment.date).toDateString()

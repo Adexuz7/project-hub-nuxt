@@ -25,12 +25,12 @@
             <v-text-field
               v-model="password"
               label="Password"
+              outlined
+              dense
               :type="show ? 'text' : 'password'"
               :append-icon="show ? 'mdi-eye-off' : 'mdi-eye'"
               @click:append="show = !show"
               @keyup.enter="login"
-              outlined
-              dense
             ></v-text-field>
           </v-list-item>
 
@@ -53,7 +53,7 @@ export default {
   }),
   methods: {
     login() {
-      console.log('Login button pressed!')
+      // console.log('Login button pressed!')
       this.$emit('login')
     }
   }

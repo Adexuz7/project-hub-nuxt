@@ -95,8 +95,14 @@
 <script>
 export default {
   props: {
-    idea: {},
-    allCategories: [],
+    idea: {
+      type: Object,
+      default: null
+    },
+    allCategories: {
+      type: Array,
+      default: null
+    },
   },
   data: () => ({
     author: 'Unknown',

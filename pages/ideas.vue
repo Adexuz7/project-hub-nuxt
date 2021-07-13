@@ -19,7 +19,7 @@
     </v-row> -->
     <v-row>
       <v-col v-for="(idea, index) in ideas" :key="index">
-        <Idea :idea="idea" :allCategories="categories" />
+        <Idea :idea="idea" :all-categories="categories" />
       </v-col>
     </v-row>
   </v-container>
