@@ -103,8 +103,8 @@
               </v-expansion-panel-header>
 
               <v-expansion-panel-content>
-                <div v-for="(comentario, idx) in project.comments" :key="idx">
-                  <Comentario :comentario="comentario" />
+                <div v-for="(comment, index) in project.comments" :key="index">
+                  <Comment :comment="comment" />
                 </div>
               </v-expansion-panel-content>
             </v-expansion-panel>
