@@ -71,7 +71,7 @@
       </v-col>
     </v-row> -->
   </v-container>
-  <Login @login="updateToken" v-else />
+  <Login v-else @login="updateToken" />
 </template>
 
 <script>
@@ -84,7 +84,7 @@ export default {
   methods: {
     updateToken() {
       // this.token = localStorage.token
-      console.log('Update the token')
+      // console.log('Update the token')
     },
     logOut() {
       // localStorage.removeItem("token")

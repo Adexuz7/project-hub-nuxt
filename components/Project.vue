@@ -118,7 +118,10 @@
 <script>
 export default {
   props: {
-    project: {},
+    project: {
+      type: Object,
+      default: null
+    },
   },
   computed: {
     date() {
