@@ -55,8 +55,17 @@ export default {
     login() {
       // console.log('Login button pressed!')
       this.$emit('login')
-    }
-  }
+    },
+
+    // async userLogin() {
+    //   try {
+    //     let response = await this.$auth.loginWith('local', { data: this.login })
+    //     console.log(response)
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // },
+  },
 }
 
 // export default {
