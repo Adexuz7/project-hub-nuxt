@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  auth: false,
   async asyncData({ $axios }) {
     return {
       ideas: await $axios.$get('/ideas'),

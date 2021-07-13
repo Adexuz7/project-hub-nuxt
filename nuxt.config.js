@@ -59,6 +59,13 @@ export default {
 
   auth: {
     // Options
+    strategies: {
+      local: { /* ... */ }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

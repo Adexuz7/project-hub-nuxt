@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  auth: false,
   async asyncData({ $axios }) {
     return {
       projects: await $axios.$get('/projects'),
