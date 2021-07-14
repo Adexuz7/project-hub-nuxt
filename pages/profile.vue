@@ -86,10 +86,6 @@ export default {
     async logOut() {
       await this.$auth.logout()
     },
-    // async mounted() {
-    //   this.user = await usersService.getUser(localStorage.id)
-    //   // this.allIdeas = await ideasService.getAllIdeas();
-    // },
   },
 }
 </script>
