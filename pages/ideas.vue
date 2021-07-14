@@ -37,20 +37,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    ...mapGetters(['isAuthenticated']),
   },
-  // data: () => ({
-  //   token: this.$auth.$storage.getLocalStorage('token'),
-  // }),
   methods: {
     async getIdeas() {
       this.ideas = await this.$axios.$get('/ideas')
     },
   },
 }
-
-// export default {
-//   data: () => ({
-//     token: localStorage.token,
-//   }),
 </script>
