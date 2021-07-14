@@ -50,11 +50,24 @@ export default {
     email: '',
     password: '',
     show: false,
+    error: null,
   }),
   methods: {
-    login() {
+    async login() {
+      try {
+        await this.$auth.loginWith('local', {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        })
+
+        this.$router.push('/')
+      } catch (e) {
+        this.error = e.response.data.message
+      }
       // console.log('Login button pressed!')
-      this.$emit('login')
+      // this.$emit('login') // delete this alfter fix login
     },
 
     // async userLogin() {

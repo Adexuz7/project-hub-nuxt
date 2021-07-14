@@ -1,5 +1,6 @@
 <template>
-  <v-container v-if="token">
+  <v-container v-if="isAuthenticated">
+    <p>{{ loggedInUser.name }} - {{ loggedInUser.email }}</p>
     <v-row justify="space-around">
       <v-col>
         <v-card class="mx-auto" max-width="600">
@@ -71,27 +72,35 @@
       </v-col>
     </v-row> -->
   </v-container>
-  <Login v-else @login="updateToken" />
+  <!-- <Login v-else @login="updateToken" /> -->
+  <Login v-else />
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+  middleware: 'auth',
   data: () => ({
     // token: localStorage.token,
     token: false,
     user: null,
   }),
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+  },
   methods: {
     updateToken() {
       // this.token = localStorage.token
       // console.log('Update the token')
     },
-    logOut() {
+    async logOut() {
+      await this.$auth.logout()
       // localStorage.removeItem("token")
       // localStorage.removeItem("id")
       // localStorage.removeItem("name")
       // localStorage.removeItem("email")
-      this.user = null
+      this.user = null // remove later
     },
     // async mounted() {
     //   this.user = await usersService.getUser(localStorage.id)
