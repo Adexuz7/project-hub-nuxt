@@ -12,11 +12,11 @@
         </v-btn>
       </v-col>
     </v-row>
-    <!-- <v-row v-if="token">
+    <v-row v-if="isAuthenticated">
       <v-col>
-        <NewIdea @ideaCreated="refreshIdeas" />
+        <NewIdea :select-categories="categories" @ideaCreated="getIdeas" />
       </v-col>
-    </v-row> -->
+    </v-row>
     <v-row>
       <v-col v-for="(idea, index) in ideas" :key="index">
         <Idea :idea="idea" :all-categories="categories" />
@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   auth: false,
   async asyncData({ $axios }) {
@@ -33,6 +35,9 @@ export default {
       ideas: await $axios.$get('/ideas'),
       categories: await $axios.$get('/categories'),
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   // data: () => ({
   //   token: this.$auth.$storage.getLocalStorage('token'),

@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="isAuthenticated">
+  <v-container>
     <v-row justify="space-around">
       <v-col>
         <v-card class="mx-auto" max-width="600">
@@ -65,13 +65,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row>
-      <v-col>
-        <p>{{ user }}</p>
-      </v-col>
-    </v-row> -->
   </v-container>
-  <Login v-else />
 </template>
 
 <script>
@@ -80,7 +74,7 @@ import { mapGetters } from 'vuex'
 export default {
   middleware: 'auth',
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    ...mapGetters(['loggedInUser']),
   },
   methods: {
     async logOut() {
