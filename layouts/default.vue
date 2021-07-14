@@ -74,6 +74,11 @@ export default {
           title: 'Profile',
           to: '/profile',
         },
+        {
+          icon:'mdi-account-group',
+          title:'Teams',
+          to:'/teams'
+        }
       ],
       miniVariant: false,
       title: 'ProjectHub',
