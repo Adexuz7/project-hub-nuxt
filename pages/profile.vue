@@ -72,7 +72,6 @@
       </v-col>
     </v-row> -->
   </v-container>
-  <!-- <Login v-else @login="updateToken" /> -->
   <Login v-else />
 </template>
 
@@ -82,25 +81,14 @@ import { mapGetters } from 'vuex'
 export default {
   middleware: 'auth',
   data: () => ({
-    // token: localStorage.token,
-    token: false,
     user: null,
   }),
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   methods: {
-    updateToken() {
-      // this.token = localStorage.token
-      // console.log('Update the token')
-    },
     async logOut() {
       await this.$auth.logout()
-      // localStorage.removeItem("token")
-      // localStorage.removeItem("id")
-      // localStorage.removeItem("name")
-      // localStorage.removeItem("email")
-      this.user = null // remove later
     },
     // async mounted() {
     //   this.user = await usersService.getUser(localStorage.id)
