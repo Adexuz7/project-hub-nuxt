@@ -40,11 +40,12 @@ export default {
     nameRules:[
       v => !!v || 'Name is required',
     ],
-    description:''
+    description:'',
+    members:[]
   }),
   methods:{
     async submit() {
-      await this.$axios.post('/teams', {name: this.teamName, description: this.description, members:[],projects:[], messages:[]})
+      await this.$axios.post('/teams', {name: this.teamName, description: this.description, members:this.members,projects:[], messages:[]})
   }
 }
 }
