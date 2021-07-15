@@ -18,7 +18,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col v-for="(idea, index) in ideas" :key="index">
+      <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
         <Idea :idea="idea" :all-categories="categories" />
       </v-col>
     </v-row>

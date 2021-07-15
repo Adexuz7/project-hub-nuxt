@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-expansion-panels>
+        <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header>
               <span>Create a new idea</span>
@@ -83,6 +83,7 @@ export default {
     categories: [],
     difficulty: '',
     selectDifficulty: ['Easy', 'Medium', 'Difficult'],
+    open: false,
   }),
   methods: {
     async newIdea() {
@@ -93,6 +94,7 @@ export default {
         difficulty: this.difficulty,
       })
 
+      this.open = false
       this.$emit('ideaCreated')
     },
   },
