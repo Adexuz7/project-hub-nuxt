@@ -3,8 +3,8 @@
     <v-row class="header">
       <v-col>
         <h1 class="font-weight-light">
-          Welcome to Project Hub</br>
-          Browse into thousands ideas from +1.000.000 users</br>
+          Welcome to Project Hub<br>
+          Browse into thousands ideas from +1.000.000 users<br>
           Here your ideas converge
         </h1>
       </v-col>

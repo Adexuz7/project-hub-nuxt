@@ -5,13 +5,6 @@
         <h1>Explore ideas</h1>
       </v-col>
     </v-row>
-    <v-row class="text-center">
-      <v-col>
-        <v-btn @click="getIdeas">
-          <v-icon>mdi-refresh</v-icon>
-        </v-btn>
-      </v-col>
-    </v-row>
     <v-row v-if="isAuthenticated">
       <v-col>
         <NewIdea :select-categories="categories" @ideaCreated="getIdeas" />
