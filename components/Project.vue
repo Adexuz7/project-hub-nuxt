@@ -1,4 +1,4 @@
-<template>
+<template class="container">
   <v-card
     class="mx-auto"
     min-width="296"
@@ -160,5 +160,11 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
+}
+
+.container {
+  background-image: url("../assets/50-Beautiful-and-Minimalist-Presentation-Backgrounds-02.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 </style>

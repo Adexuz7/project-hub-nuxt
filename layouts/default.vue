@@ -6,6 +6,7 @@
       :clipped="clipped"
       fixed
       app
+      color="orange lighten-2"
     >
       <v-list>
         <v-list-item
@@ -24,18 +25,21 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    <v-app-bar color="orange lighten-1" :clipped-left="clipped" fixed app>
+      <a @click.stop="drawer = !drawer"> 
+        <v-icon class="mr-5">mdi-apps</v-icon>
+      </a>
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-toolbar-title v-text="title" />
       <!-- <v-spacer />
       Add things to the right side of the nav bar -->
     </v-app-bar>
-    <v-main>
+    <v-main class="diferente">
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
+    <v-footer color="orange lighten-3" :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -50,7 +54,7 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-set-center-right',
           title: 'Welcome',
           to: '/',
         },
@@ -77,7 +81,18 @@ export default {
       ],
       miniVariant: false,
       title: 'ProjectHub',
+      
     }
   },
 }
 </script>
+
+<style>
+ .diferente {
+  background-image: url("../assets/74173.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+ } 
+ 
+
+</style>
