@@ -2,13 +2,7 @@
   <v-container class="text-center">
     <v-row>
       <v-col>
-        <h2>Login</h2>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <span>Not registered yet?</span>
-        <v-btn x-small outlined rounded color="secondary" nuxt to="/signup">Sign up</v-btn>
+        <h2>Sign up</h2>
       </v-col>
     </v-row>
     <v-row>
@@ -16,6 +10,15 @@
         <v-card class="mx-auto" max-width="400" outlined>
           <v-list-item>
             <!--  -->
+          </v-list-item>
+
+          <v-list-item>
+            <v-text-field
+              v-model="name"
+              label="Name"
+              outlined
+              dense
+            ></v-text-field>
           </v-list-item>
 
           <v-list-item>
@@ -42,7 +45,7 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn outlined color="primary" @click="login">Log in</v-btn>
+            <v-btn outlined color="primary" @click="signup">Sign up</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -53,14 +56,21 @@
 <script>
 export default {
   data: () => ({
+    name: '',
     email: '',
     password: '',
     show: false,
     error: null,
   }),
   methods: {
-    async login() {
+    async signup() {
       try {
+        await this.$axios.post('auth/signup', {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        })
+
         await this.$auth.loginWith('local', {
           data: {
             email: this.email,

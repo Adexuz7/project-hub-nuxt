@@ -7,44 +7,42 @@
     </v-row>
     <v-row class="text-center">
       <v-col>
-        <v-btn @click="refreshIdeas">
+        <v-btn @click="getIdeas">
           <v-icon>mdi-refresh</v-icon>
         </v-btn>
       </v-col>
     </v-row>
-    <!-- <v-row v-if="token">
+    <v-row v-if="isAuthenticated">
       <v-col>
-        <NewIdea @ideaCreated="refreshIdeas" />
+        <NewIdea :select-categories="categories" @ideaCreated="getIdeas" />
       </v-col>
-    </v-row> -->
+    </v-row>
     <v-row>
       <v-col v-for="(idea, index) in ideas" :key="index">
-        <Idea :idea="idea" :allCategories="categories" />
+        <Idea :idea="idea" :all-categories="categories" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
+  auth: false,
   async asyncData({ $axios }) {
     return {
       ideas: await $axios.$get('/ideas'),
       categories: await $axios.$get('/categories'),
     }
   },
-  // data: () => ({
-  //   token: this.$auth.$storage.getLocalStorage('token'),
-  // }),
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
   methods: {
-    async refreshIdeas() {
+    async getIdeas() {
       this.ideas = await this.$axios.$get('/ideas')
     },
   },
 }
-
-// export default {
-//   data: () => ({
-//     token: localStorage.token,
-//   }),
 </script>
