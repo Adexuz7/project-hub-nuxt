@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="token">
+  <v-container>
     <v-row justify="space-around">
       <v-col>
         <v-card class="mx-auto" max-width="600">
@@ -15,25 +15,25 @@
                   src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
                 />
               </v-avatar>
-              <span class="ml-3">{{ user.name }}</span>
+              <span class="ml-3">{{ loggedInUser.name }}</span>
             </v-card-title>
           </v-img>
 
           <v-card-text class="text--primary">
             <v-row class="text-center">
               <v-col>
-                <span>{{ user.email }}</span>
+                <span>{{ loggedInUser.email }}</span>
               </v-col>
             </v-row>
 
             <v-row class="text-center">
               <v-col>
                 <v-icon>mdi-account-star</v-icon>
-                <span class="ml-2">{{ user.follows.length }}</span>
+                <span class="ml-2">{{ loggedInUser.follows.length }}</span>
               </v-col>
               <v-col>
                 <v-icon>mdi-account-multiple-check</v-icon>
-                <span class="ml-2">{{ user.followers.length }}</span>
+                <span class="ml-2">{{ loggedInUser.followers.length }}</span>
               </v-col>
             </v-row>
 
@@ -42,7 +42,7 @@
                 <v-expansion-panel>
                   <v-expansion-panel-header>Ideas</v-expansion-panel-header>
                   <v-expansion-panel-content
-                    v-for="(idea, index) in user.ideas"
+                    v-for="(idea, index) in loggedInUser.ideas"
                     :key="index"
                   >
                     <v-list-item dense>
@@ -65,38 +65,21 @@
         </v-card>
       </v-col>
     </v-row>
-    <!-- <v-row>
-      <v-col>
-        <p>{{ user }}</p>
-      </v-col>
-    </v-row> -->
   </v-container>
-  <Login v-else @login="updateToken" />
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  data: () => ({
-    // token: localStorage.token,
-    token: false,
-    user: null,
-  }),
+  middleware: 'auth',
+  computed: {
+    ...mapGetters(['loggedInUser']),
+  },
   methods: {
-    updateToken() {
-      // this.token = localStorage.token
-      // console.log('Update the token')
+    async logOut() {
+      await this.$auth.logout()
     },
-    logOut() {
-      // localStorage.removeItem("token")
-      // localStorage.removeItem("id")
-      // localStorage.removeItem("name")
-      // localStorage.removeItem("email")
-      this.user = null
-    },
-    // async mounted() {
-    //   this.user = await usersService.getUser(localStorage.id)
-    //   // this.allIdeas = await ideasService.getAllIdeas();
-    // },
   },
 }
 </script>
