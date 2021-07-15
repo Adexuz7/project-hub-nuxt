@@ -47,8 +47,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // baseURL: 'https://project-hub-back.herokuapp.com/api'
-    baseURL: 'http://localhost:4000/api'
+    baseURL: 'https://project-hub-back.herokuapp.com/api'
+    // baseURL: 'http://localhost:4000/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
