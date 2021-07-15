@@ -8,7 +8,7 @@
     <v-row>
       <v-col>
         <span>Not registered yet?</span>
-        <v-btn x-small outlined rounded color="secondary" @click="signup">Sign up</v-btn>
+        <v-btn x-small outlined rounded color="secondary" nuxt to="/signup">Sign up</v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -73,9 +73,6 @@ export default {
         this.error = e.response.data.message
       }
     },
-    signup() {
-      this.$router.push('/signup')
-    }
   },
 }
 </script>
