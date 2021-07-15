@@ -56,6 +56,9 @@ export default {
       console.log('Login button pressed!')
       this.$emit('login')
     }
+  },
+  mounted(){
+    console.log('UwU')
   }
 }
 
