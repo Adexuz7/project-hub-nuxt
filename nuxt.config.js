@@ -44,11 +44,12 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/auth'
   ],
-
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // baseURL: 'https://project-hub-back.herokuapp.com/api'
-    baseURL: 'http://localhost:4000/api'
+    baseURL: process.env.baseUrl
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
