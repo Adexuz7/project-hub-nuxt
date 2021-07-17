@@ -6,9 +6,18 @@
       :clipped="clipped"
       fixed
       app
-      color="orange lighten-2"
     >
-      <v-list>
+      <v-list v-if="loggedInUser">
+          <v-list-item nuxt to="/profile">
+            <v-list-item-content>
+              <v-list-item-title class="text-h6">
+                {{ loggedInUser.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle>{{ loggedInUser.email }}</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -23,39 +32,43 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
-      </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="orange lighten-1" :clipped-left="clipped" fixed app>
-      <a @click.stop="drawer = !drawer"> 
-        <v-icon class="mr-5">mdi-apps</v-icon>
-      </a>
+    <v-app-bar color="amber" :clipped-left="clipped" fixed app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+      <v-btn large rounded text @click.stop="drawer = !drawer">
+        <v-icon>mdi-set-center-right</v-icon>
+      </v-btn>
+      <v-spacer />
       <v-toolbar-title v-text="title" />
-      <!-- <v-spacer />
-      Add things to the right side of the nav bar -->
+      <v-spacer />
+      <v-btn class="btn-profile" large rounded text to="/profile">
+        <v-icon>mdi-account</v-icon>
+      </v-btn>
     </v-app-bar>
-    <v-main class="diferente">
+    <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer color="orange lighten-3" :absolute="!fixed" app>
+    <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
+  middleware: 'auth',
   data() {
     return {
-      clipped: false,
+      clipped: true,
       drawer: false,
       fixed: false,
       items: [
         {
-          icon: 'mdi-set-center-right',
-          title: 'Welcome',
+          icon: 'mdi-home',
+          title: 'Home',
           to: '/',
         },
         {
@@ -68,26 +81,19 @@ export default {
           title: 'Projects',
           to: '/projects',
         },
-        {
-          icon: 'mdi-account-circle',
-          title: 'Profile',
-          to: '/profile',
-        },
       ],
       miniVariant: false,
       title: 'ProjectHub',
-      
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser']),
   },
 }
 </script>
 
-<style>
- .diferente {
-  background-image: url("../assets/74173.jpg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
- } 
- 
-
+<style scoped>
+.btn-profile.v-btn--active::before {
+  opacity: 0;
+}
 </style>

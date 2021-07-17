@@ -1,16 +1,14 @@
 <template>
   <v-container>
-    <v-row class="text-center">
+    <v-row>
       <v-col>
         <h1>Explore ideas</h1>
       </v-col>
     </v-row>
-    <v-row v-if="isAuthenticated">
-      <v-col>
-        <NewIdea :select-categories="categories" @ideaCreated="getIdeas" />
-      </v-col>
+    <v-row >
+        <NewIdea :select-categories="categories" @ideaCreated="getIdeas" v-if="isAuthenticated" />
     </v-row>
-    <v-row>
+    <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
         <Idea :idea="idea" :all-categories="categories" />
       </v-col>
