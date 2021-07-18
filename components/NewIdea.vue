@@ -55,6 +55,7 @@
                   </v-col>
                 </v-row>
                 <v-row>
+                  <v-spacer />
                   <v-btn color="primary" class="mr-4" @click="newIdea">
                     New idea
                   </v-btn>
