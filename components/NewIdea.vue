@@ -17,20 +17,13 @@
                       outlined
                       dense
                     ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col>
-                    <v-text-field
+                    <v-textarea
                       v-model="description"
                       label="Description"
+                      no-resize
                       outlined
                       dense
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col class="d-flex">
+                    ></v-textarea>
                     <v-select
                       v-model="categories"
                       :items="selectCategories"
@@ -41,10 +34,6 @@
                       outlined
                       dense
                     ></v-select>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col class="d-flex">
                     <v-select
                       v-model="difficulty"
                       :items="selectDifficulty"
@@ -52,13 +41,8 @@
                       outlined
                       dense
                     ></v-select>
+                    <v-btn block color="primary" @click="newIdea"> New idea </v-btn>
                   </v-col>
-                </v-row>
-                <v-row>
-                  <v-spacer />
-                  <v-btn color="primary" class="mr-4" @click="newIdea">
-                    New idea
-                  </v-btn>
                 </v-row>
               </v-container>
             </v-expansion-panel-content>
