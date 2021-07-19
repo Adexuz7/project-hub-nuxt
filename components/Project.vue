@@ -161,4 +161,10 @@ export default {
 a {
   text-decoration: none;
 }
+
+/* .container {
+  background-image: url("../assets/50-Beautiful-and-Minimalist-Presentation-Backgrounds-02.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
 </style>

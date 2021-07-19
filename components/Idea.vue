@@ -3,7 +3,7 @@
     class="mx-auto"
     min-width="296"
     max-width="400"
-    color="yellow lighten-2"
+    color="yellow lighten-3"
   >
     <v-list-item two-line>
       <v-list-item-content>
