@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-expansion-panels color="pink" v-model="open">
+        <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header>
               <span>Create a new idea</span>
