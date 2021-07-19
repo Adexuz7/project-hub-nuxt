@@ -82,7 +82,8 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.orange.darken2
+          primary: colors.orange.darken2,
+          ideas: colors.yellow.lighten3
         },
         dark: {
           primary: colors.orange.darken2,

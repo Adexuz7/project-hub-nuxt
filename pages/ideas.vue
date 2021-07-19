@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <v-row >
-        <NewIdea :select-categories="categories" @ideaCreated="getIdeas" v-if="isAuthenticated" />
+        <NewIdea v-if="isAuthenticated" :select-categories="categories" @ideaCreated="getIdeas" />
     </v-row>
     <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
