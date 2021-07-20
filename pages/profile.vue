@@ -6,13 +6,13 @@
           <v-img
             class="white--text align-end"
             height="200px"
-            src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+            :src="banner"
           >
             <v-card-title>
               <v-avatar size="56">
                 <img
                   alt="user"
-                  src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
+                  :src="image"
                 />
               </v-avatar>
               <span class="ml-3">{{ loggedInUser.name }}</span>
@@ -75,6 +75,12 @@ export default {
   middleware: 'auth',
   computed: {
     ...mapGetters(['loggedInUser']),
+    image() {
+      return this.loggedInUser.image || 'https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg'
+    },
+    banner() {
+      return this.loggedInUser.banner || 'https://cdn.vuetifyjs.com/images/cards/docks.jpg'
+    }
   },
   methods: {
     async logOut() {

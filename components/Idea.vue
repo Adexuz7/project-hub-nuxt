@@ -1,10 +1,5 @@
 <template>
-  <v-card
-    class="mx-auto"
-    min-width="296"
-    max-width="400"
-    color="yellow lighten-3"
-  >
+  <v-card class="mx-auto" min-width="296" max-width="400" color="ideas">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
@@ -51,33 +46,27 @@
 
       <v-row>
         <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-thumb-up</v-icon>
-            </v-list-item-icon>
+          <v-list-item dense>
             <v-list-item-subtitle>
-              <span>{{ likes }}</span>
+              <v-icon small align>mdi-thumb-up</v-icon>
+              <span class="ml-2">{{ likes }}</span>
             </v-list-item-subtitle>
           </v-list-item>
         </v-col>
         <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-comment</v-icon>
-            </v-list-item-icon>
+          <v-list-item dense>
             <v-list-item-subtitle>
-              <span>{{ comments }}</span>
+              <v-icon small>mdi-comment</v-icon>
+              <span class="ml-2">{{ comments }}</span>
             </v-list-item-subtitle>
           </v-list-item>
         </v-col>
 
         <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-file</v-icon>
-            </v-list-item-icon>
+          <v-list-item dense>
             <v-list-item-subtitle>
-              <span>{{ projects }}</span>
+              <v-icon small>mdi-file</v-icon>
+              <span class="ml-2">{{ projects }}</span>
             </v-list-item-subtitle>
           </v-list-item>
         </v-col>
@@ -97,11 +86,11 @@ export default {
   props: {
     idea: {
       type: Object,
-      default: null
+      default: null,
     },
     allCategories: {
       type: Array,
-      default: null
+      default: null,
     },
   },
   data: () => ({
