@@ -27,7 +27,7 @@
         :to="item.to"
         router
         exact
-        
+
       >
         <v-list-item-action>
           <v-icon>{{ item.icon }}</v-icon>
@@ -85,8 +85,8 @@ export default {
           to: '/projects',
         },
         {
-          icon:'mdi-acount-group',
-          title:'teams',
+          icon:'mdi-account-group',
+          title:'Teams',
           to:'/teams'
         },
       ],
