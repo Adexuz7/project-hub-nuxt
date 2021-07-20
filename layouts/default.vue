@@ -4,36 +4,40 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      fixed
       app
+      mobile-breakpoint="200000"
+      color="pink lighten-4"
     >
       <v-list v-if="loggedInUser">
-          <v-list-item nuxt to="/profile">
-            <v-list-item-content>
-              <v-list-item-title class="text-h6">
-                {{ loggedInUser.name }}
-              </v-list-item-title>
-              <v-list-item-subtitle>{{ loggedInUser.email }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
+        <v-list-item nuxt to="/profile">
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title class="text-h6">
+              {{ loggedInUser.name }}
+            </v-list-item-title>
+            <v-list-item-subtitle>{{
+              loggedInUser.email
+            }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
+      </v-list>
+
+      <v-list-item
+        v-for="(item, i) in items"
+        :key="i"
+        :to="item.to"
+        router
+        exact
+        
+      >
+        <v-list-item-action>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-action>
+        <v-list-item-content >
+          <v-list-item-title v-text="item.title" />
+        </v-list-item-content>
+      </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="amber" :clipped-left="clipped" fixed app>
+    <v-app-bar color="pink lighten-2" :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large rounded text @click.stop="drawer = !drawer">
         <v-icon>mdi-set-center-right</v-icon>
@@ -45,12 +49,12 @@
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="bg-color pink lighten-4">
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer :absolute="!fixed" app>
+    <v-footer color="pink lighten-3" absolute app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -64,7 +68,6 @@ export default {
     return {
       clipped: true,
       drawer: false,
-      fixed: false,
       items: [
         {
           icon: 'mdi-home',

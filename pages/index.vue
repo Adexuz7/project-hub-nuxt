@@ -1,19 +1,10 @@
 <template>
-  <div class="background">
-    <v-row class="header">
-      <v-col>
-        <h1 class="font-weight-light">
-          Welcome to Project Hub<br>
-          Browse into thousands ideas from +1.000.000 users<br>
-          Here your ideas converge
-        </h1>
-      </v-col>
-    </v-row>
+  <div>
     <v-hover v-slot:default="{ hover }">
       <v-carousel
         cycle
         :interval="3500"
-        height="400"
+        height="200"
         hide-delimiter-background
         show-arrows-on-hover
       >
@@ -27,20 +18,26 @@
             <div class="slide">{{ slide.description }}</div>
           </v-row>
           <v-fade-transition>
-            <v-overlay v-if="hover" absolute color="#FFE0B2">
-              <v-btn @click="redirect(slide.path)">See more info</v-btn>
+            <v-overlay v-if="hover" absolute color="#FFE0B2" class="d-flex align-end">
+              <v-btn class="mb-12" @click="redirect(slide.path)">See more info</v-btn>
             </v-overlay>
           </v-fade-transition>
         </v-carousel-item>
       </v-carousel>
     </v-hover>
+    <v-row class="header">
+      <v-col>
+        <h1>
+          Browse into thousands ideas from +1.000.000 users
+        </h1>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 export default {
   auth: false,
-  layout: 'landing',
   data() {
     return {
       slides: [
@@ -80,18 +77,11 @@ export default {
 </script>
 
 <style scoped>
- .background {
-  background-image: url("../assets/74173.jpg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
- }
 
 .slide {
-  color: rgb(252, 221, 168);
-  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
-    -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
-  font-size: 80px;
-  background-color: rgb(240, 114, 12, 0.5);
+  color: rgb(255, 255, 255);
+  font-size: 70px;
+  background-color: rgba(241, 132, 209, 0.5);
   width: 1161px;
   text-align: center;
 }
@@ -101,14 +91,17 @@ export default {
   padding: 30px;
 }
 
+.SeeMore {
+  justify-content: center;
+
+}
+
 h1 {
   font-size: 40px;
   color: white;
-}
-.diferente {
-  background-image: url('../assets/74173.jpg');
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+  font-family: 'Montserrat Alternates', sans-serif;
+ font-style: normal;
+ font-weight: 300;
 }
 
 </style>
