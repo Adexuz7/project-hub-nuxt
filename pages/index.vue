@@ -3,9 +3,7 @@
     <v-row class="header">
       <v-col>
         <h1 class="font-weight-light">
-          Welcome to Project Hub</br>
-          Browse into thousands ideas from +1.000.000 users</br>
-          Here your ideas converge
+          Browse into thousands ideas from +1.000.000 users
         </h1>
       </v-col>
     </v-row>
@@ -40,6 +38,7 @@
 <script>
 export default {
   auth: false,
+  layout: 'landing',
   data() {
     return {
       slides: [
@@ -81,8 +80,8 @@ export default {
 <style>
 .slide {
   color: rgb(252, 221, 168);
-  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255), -1px 1px 0 rgb(255, 255, 255),
-    1px 1px 0 rgb(255, 255, 255);
+  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
+    -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
   font-size: 80px;
   background-color: rgb(240, 114, 12, 0.5);
   width: 1161px;
@@ -98,4 +97,10 @@ h1 {
   font-size: 40px;
   color: white;
 }
+.diferente {
+  background-image: url('../assets/74173.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 </style>

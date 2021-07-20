@@ -31,7 +31,7 @@
       <!-- <v-spacer />
       Add things to the right side of the nav bar -->
     </v-app-bar>
-    <v-main>
+    <v-main class="diferente">
       <v-container>
         <Nuxt />
       </v-container>
@@ -79,6 +79,13 @@ export default {
 </script>
 
 <style>
+
+.diferente {
+  background-image: url('../assets/74173.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
 
 /* .{
   display: flex;
