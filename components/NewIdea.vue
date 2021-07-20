@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-expansion-panels>
+        <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header>
               <span>Create a new idea</span>
@@ -17,20 +17,13 @@
                       outlined
                       dense
                     ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col>
-                    <v-text-field
+                    <v-textarea
                       v-model="description"
                       label="Description"
+                      no-resize
                       outlined
                       dense
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col class="d-flex">
+                    ></v-textarea>
                     <v-select
                       v-model="categories"
                       :items="selectCategories"
@@ -41,10 +34,6 @@
                       outlined
                       dense
                     ></v-select>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-col class="d-flex">
                     <v-select
                       v-model="difficulty"
                       :items="selectDifficulty"
@@ -52,12 +41,8 @@
                       outlined
                       dense
                     ></v-select>
+                    <v-btn block color="primary" @click="newIdea"> New idea </v-btn>
                   </v-col>
-                </v-row>
-                <v-row>
-                  <v-btn color="primary" class="mr-4" @click="newIdea">
-                    New idea
-                  </v-btn>
                 </v-row>
               </v-container>
             </v-expansion-panel-content>
@@ -83,6 +68,7 @@ export default {
     categories: [],
     difficulty: '',
     selectDifficulty: ['Easy', 'Medium', 'Difficult'],
+    open: false,
   }),
   methods: {
     async newIdea() {
@@ -93,6 +79,7 @@ export default {
         difficulty: this.difficulty,
       })
 
+      this.open = false
       this.$emit('ideaCreated')
     },
   },

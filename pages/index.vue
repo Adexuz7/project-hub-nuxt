@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="background">
     <v-row class="header">
       <v-col>
         <h1 class="font-weight-light">
-          Browse into thousands ideas from +1.000.000 users
+          Welcome to Project Hub<br>
+          Browse into thousands ideas from +1.000.000 users<br>
+          Here your ideas converge
         </h1>
       </v-col>
     </v-row>
@@ -77,7 +79,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+ .background {
+  background-image: url("../assets/74173.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+ }
+
 .slide {
   color: rgb(252, 221, 168);
   text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
