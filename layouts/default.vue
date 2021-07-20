@@ -84,6 +84,11 @@ export default {
           title: 'Projects',
           to: '/projects',
         },
+        {
+          icon:'mdi-acount-group',
+          title:'teams',
+          to:'/teams'
+        },
       ],
       miniVariant: false,
       title: 'ProjectHub',
