@@ -8,7 +8,7 @@
     <v-row>
       <v-col v-for="(project, index) in projects" :key="index">
         <!-- <Project :project="project" @addlike="getProjects" /> -->
-        <Project :project="project" />
+        <Project :project="project" @addlike="addLike"/>
       </v-col>
     </v-row>
   </v-container>
@@ -26,6 +26,11 @@ export default {
     async getProjects() {
       this.projects = await this.$axios.$get('/projects')
     },
+    addLike(project) {
+      const arr = this.projects.map(project => project._id)
+
+      this.projects.splice(arr.indexOf(project._id), 1, project)
+    }
   },
 }
 </script>

@@ -63,8 +63,8 @@
         <v-col>
           <v-list-item>
             <v-list-item-icon>
-              <!-- <a @click="addlikes"><v-icon>mdi-thumb-up</v-icon></a> -->
-              <a><v-icon>mdi-thumb-up</v-icon></a>
+              <a @click="addlikes"><v-icon>mdi-thumb-up</v-icon></a>
+              <!-- <a><v-icon>mdi-thumb-up</v-icon></a> -->
             </v-list-item-icon>
             <v-list-item-subtitle>
               <span>{{ likes }}</span>
@@ -138,22 +138,13 @@ export default {
       return this.project.likes.length
     },
   },
-  // methods: {
-  //   async addlikes() {
-  //     const likes = this.project.likes
-  //     if (!likes.includes(localStorage.email)) {
-  //       likes.push(localStorage.email)
-  //       console.log('likes1: ', likes.length)
-  //     } else {
-  //       likes.splice(likes.indexOf(localStorage.email), 1)
-  //       console.log('likes2: ', likes.length)
-  //     }
+  methods: {
+    async addlikes() {
+      const newProject = await this.$axios.put('/projects/likes/' + this.project._id)
 
-  //     const newProject = await projectsService.updateProjectById(this.project)
-  //     console.log(newProject)
-  //     this.$emit('addlike')
-  //   },
-  // },
+      this.$emit('addlike', newProject.data)
+    }
+  },
 }
 </script>
 
