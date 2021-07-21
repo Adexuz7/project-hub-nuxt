@@ -48,7 +48,7 @@
         <v-col>
           <v-list-item dense>
             <v-list-item-subtitle>
-              <v-icon small align>mdi-thumb-up</v-icon>
+              <a @click="addLikesIdea"><v-icon small align>mdi-thumb-up</v-icon></a>
               <span class="ml-2">{{ likes }}</span>
             </v-list-item-subtitle>
           </v-list-item>
@@ -94,7 +94,9 @@ export default {
     },
   },
   data: () => ({
-    author: 'Unknown',
+    author: {
+      name: 'unknown',
+    },
   }),
   computed: {
     date() {
@@ -130,6 +132,14 @@ export default {
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)
+
   },
+  methods: {
+    async addLikesIdea() {
+      const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
+
+      this.$emit('addLikesIdea', newIdea.data)
+    }
+  }
 }
 </script>

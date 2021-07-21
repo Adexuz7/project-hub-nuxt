@@ -10,7 +10,7 @@
     </v-row>
     <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
-        <Idea :idea="idea" :all-categories="categories" />
+        <Idea :idea="idea" :all-categories="categories" @addLikesIdea="addLikeIdea"/>
       </v-col>
     </v-row>
   </v-container>
@@ -34,6 +34,11 @@ export default {
     async getIdeas() {
       this.ideas = await this.$axios.$get('/ideas')
     },
+    addLikeIdea(idea) {
+      const arr = this.ideas.map(idea => idea._id)
+
+      this.ideas.splice(arr.indexOf(idea._id), 1, idea)
+    }
   },
 }
 </script>
