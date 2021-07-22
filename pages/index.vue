@@ -47,7 +47,7 @@
             height="200px"
             src="http://edap.es/wp-content/uploads/blog9-img-01.jpg"
           >
-            <v-card-title>Create a project or browse</v-card-title>
+            <v-card-title class="card2">Create a project or browse</v-card-title>
           </v-img>
 
           <v-card-text class="text--primary">
@@ -74,7 +74,7 @@
             height="200px"
             src="https://blogs.iadb.org/conocimiento-abierto/wp-content/uploads/sites/10/2019/09/banner-siete-pasos-gestion-proyectos.jpg"
           >
-            <v-card-title>Create an idea or browse</v-card-title>
+            <v-card-title class="card1">Create an idea or browse</v-card-title>
           </v-img>
           <v-card-text class="text--primary">
             <div>Create an idea or browse around thousands options</div>
@@ -171,4 +171,13 @@ h1 {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.card1 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card2 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 </style>

@@ -36,14 +36,14 @@
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="yellow" flat :clipped-left="clipped" app>
+    <v-app-bar color="blue-grey lighten-1" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large text @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
-      <nuxt-link class="title" to="/">
-        <v-toolbar-title v-text="title" />
+      <nuxt-link to="/">
+        <v-toolbar-title class="title" v-text="title" />
       </nuxt-link>
       <v-spacer />
       <v-btn class="btn-profile" large text to="/profile">
@@ -107,7 +107,9 @@ export default {
 }
 
 .title {
+  color: black;
   font-size: 30px !important;
   font-family: 'Montserrat', sans-serif !important;
+  text-decoration: none;
 }
 </style>
