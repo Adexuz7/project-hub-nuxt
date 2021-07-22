@@ -77,7 +77,7 @@ export default {
       try {
         await this.$axios.post('auth/signup', {
           name: this.name,
-          username: this.username,
+          userName: this.username,
           email: this.email,
           password: this.password,
         })
