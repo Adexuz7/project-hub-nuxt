@@ -40,7 +40,7 @@
     <v-app-bar color="yellow lighten-1" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large rounded text @click.stop="drawer = !drawer">
-        <v-icon>mdi-set-center-right</v-icon>
+        <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
       <v-toolbar-title v-text="title" />
