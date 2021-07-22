@@ -10,7 +10,7 @@
         <IdeaDetails
           :idea="idea"
           :all-categories="categories"
-          @addLikesIdea="addLikeIdea"
+          @addLikesIdea="refreshIdea"
         />
       </v-col>
     </v-row>
@@ -107,11 +107,20 @@ export default {
     }
   },
   methods: {
-    async addLikeIdea() {
+    async refreshIdea() {
       this.idea = await this.$axios.$get(`/ideas/${this.id}`)
     },
-    postComment() {
-      console.log('Posting a comment', this.comment)
+    async postComment() {
+      try {
+        await this.$axios.post(`/ideas/${this.id}/comments`, {
+          comment: this.comment,
+        })
+
+        this.idea = await this.$axios.$get(`/ideas/${this.id}`)
+      } catch (e) {
+        this.error = e.response.data.message
+      }
+
       this.comment = null
     },
   },
