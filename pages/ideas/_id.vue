@@ -53,9 +53,8 @@
     </v-row>
 
     <v-row>
-      <v-col>
+      <v-col v-if="loggedInUser">
         <v-text-field
-          v-if="loggedUser"
           v-model="comment"
           label="Add a comment"
           append-icon="mdi-send"
@@ -64,8 +63,9 @@
           outlined
           dense
         ></v-text-field>
+      </v-col>
+      <v-col v-else>
         <v-text-field
-          v-else
           label="Log in to be able to comment"
           append-icon="mdi-send"
           disabled
