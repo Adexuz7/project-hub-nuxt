@@ -6,7 +6,7 @@
       :clipped="clipped"
       app
       mobile-breakpoint="200000"
-      color="yellow lighten-3"
+      color="grey lighten-2"
     >
       <v-list v-if="loggedInUser">
         <v-list-item nuxt to="/profile">
@@ -27,23 +27,23 @@
         :to="item.to"
         router
         exact
-
       >
         <v-list-item-action>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-action>
-        <v-list-item-content >
+        <v-list-item-content>
           <v-list-item-title v-text="item.title" />
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="yellow lighten-1" flat :clipped-left="clipped" app>
+    <v-app-bar color="blue-grey lighten-2" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large rounded text @click.stop="drawer = !drawer">
-        <v-icon>mdi-set-center-right</v-icon>
+        <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
-      <v-toolbar-title v-text="title" />
+
+      <v-toolbar-title class="title" v-text="title" />
       <v-spacer />
       <v-btn class="btn-profile" large rounded text to="/profile">
         <v-icon>mdi-account</v-icon>
@@ -54,7 +54,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer color="yellow lighten-2" absolute app>
+    <v-footer color="grey lighten-1" absolute app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -70,7 +70,7 @@ export default {
       drawer: false,
       items: [
         {
-          icon: 'mdi-home',
+          icon: 'mdi-set-center-right',
           title: 'Home',
           to: '/',
         },
@@ -85,13 +85,13 @@ export default {
           to: '/projects',
         },
         {
-          icon:'mdi-account-group',
-          title:'Teams',
-          to:'/teams'
+          icon: 'mdi-account-group',
+          title: 'Teams',
+          to: '/teams',
         },
       ],
       miniVariant: false,
-      title: 'ProjectHub',
+      title: 'Project Hub',
     }
   },
   computed: {
@@ -103,5 +103,10 @@ export default {
 <style scoped>
 .btn-profile.v-btn--active::before {
   opacity: 0;
+}
+
+.title {
+  font-size: 30px !important;
+  font-family: 'Montserrat', sans-serif !important;
 }
 </style>

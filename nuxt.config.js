@@ -15,6 +15,10 @@ export default {
       {
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap'
       }
     ]
   },
@@ -87,7 +91,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.orange.darken2,
+          primary: colors.blueGrey.lighten1,
           ideas: colors.yellow.lighten3
         },
         dark: {

@@ -3,6 +3,7 @@
     <v-row>
       <v-col>
         <h1>Explore projects</h1>
+        <hr>
       </v-col>
     </v-row>
     <v-row>
@@ -34,3 +35,13 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+h1 {
+display: flex;
+justify-content: center;
+font-family: 'Montserrat Alternates', sans-serif;
+letter-spacing: 10px;
+text-shadow: 1px 1px 2px black;
+}
+</style>

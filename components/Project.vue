@@ -3,7 +3,7 @@
     class="mx-auto"
     min-width="296"
     max-width="600"
-    color="orange lighten-3"
+    color="blue-grey lighten-4"
   >
     <v-img
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
@@ -91,7 +91,7 @@
         <v-col>
           <v-expansion-panels flat>
             <v-expansion-panel>
-              <v-expansion-panel-header color="orange lighten-4">
+              <v-expansion-panel-header color="blue-grey lighten-5">
                 <v-list-item>
                   <v-list-item-icon>
                     <v-icon>mdi-comment</v-icon>
