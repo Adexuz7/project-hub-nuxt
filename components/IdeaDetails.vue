@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="360" height="356" color="ideas">
+  <v-card class="mx-auto" color="ideas">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
@@ -14,7 +14,7 @@
     <v-card-text>
       <v-row>
         <v-col>
-          <span class="description">{{ description }}</span>
+          <span>{{ idea.description }}</span>
         </v-col>
       </v-row>
 
@@ -48,13 +48,6 @@
         </v-col>
       </v-row>
     </v-card-text>
-
-    <v-divider></v-divider>
-
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn @click="seeMoreDetails" text>More details</v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 
@@ -71,20 +64,11 @@ export default {
     },
   },
   data: () => ({
-    author: {
-      name: 'unknown',
-    },
+    author: 'Unknown',
   }),
   computed: {
     date() {
       return new Date(this.idea.date).toDateString()
-    },
-    description() {
-      if (this.idea.description.length >= 199) {
-        return this.idea.description.substring(0, 199) + ' ...'
-      } else {
-        return this.idea.description
-      }
     },
     categories() {
       const categoriesNames = []
@@ -107,26 +91,15 @@ export default {
       return this.idea.projects.length
     },
   },
-  async mounted() {
-    this.author = await this.$axios.$get(`/users/${this.idea.author}`)
-  },
   methods: {
     async addLikesIdea() {
       const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
 
       this.$emit('addLikesIdea', newIdea.data)
     },
-    seeMoreDetails() {
-      this.$router.push(`/ideas/${this.idea._id}`)
-    },
+  },
+  async mounted() {
+    this.author = await this.$axios.$get(`/users/${this.idea.author}`)
   },
 }
 </script>
-
-<style scoped>
-.description {
-  display: block;
-  height: 90px;
-  text-align: justify;
-}
-</style>

@@ -7,6 +7,11 @@
       </v-col>
     </v-row>
     <v-row>
+      <v-col>
+        <NewProject v-if="isAuthenticated" :select-categories="categories" @projectCreated="getProjects"></NewProject>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col v-for="(project, index) in projects" :key="index">
         <!-- <Project :project="project" @addlike="getProjects" /> -->
         <Project :project="project" @addlike="addLike"/>

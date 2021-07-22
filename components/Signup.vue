@@ -23,6 +23,15 @@
 
           <v-list-item>
             <v-text-field
+              v-model="username"
+              label="User Name"
+              outlined
+              dense
+            ></v-text-field>
+          </v-list-item>
+
+          <v-list-item>
+            <v-text-field
               v-model="email"
               label="E-mail"
               outlined
@@ -57,6 +66,7 @@
 export default {
   data: () => ({
     name: '',
+    username: '',
     email: '',
     password: '',
     show: false,
@@ -67,6 +77,7 @@ export default {
       try {
         await this.$axios.post('auth/signup', {
           name: this.name,
+          userName: this.username,
           email: this.email,
           password: this.password,
         })
