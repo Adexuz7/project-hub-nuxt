@@ -6,7 +6,6 @@
       :clipped="clipped"
       app
       mobile-breakpoint="200000"
-      color="yellow lighten-3"
     >
       <v-list v-if="loggedInUser">
         <v-list-item nuxt to="/profile">
@@ -37,15 +36,17 @@
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="yellow lighten-1" flat :clipped-left="clipped" app>
+    <v-app-bar color="yellow" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <v-btn large rounded text @click.stop="drawer = !drawer">
+      <v-btn large text @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
-      <v-toolbar-title v-text="title" />
+      <nuxt-link class="title" to="/">
+        <v-toolbar-title v-text="title" />
+      </nuxt-link>
       <v-spacer />
-      <v-btn class="btn-profile" large rounded text to="/profile">
+      <v-btn class="btn-profile" large text to="/profile">
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
@@ -54,7 +55,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer color="yellow lighten-2" absolute app>
+    <v-footer absolute app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -103,5 +104,10 @@ export default {
 <style scoped>
 .btn-profile.v-btn--active::before {
   opacity: 0;
+}
+.title {
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
 }
 </style>
