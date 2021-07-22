@@ -6,7 +6,7 @@
           <v-avatar size="35" class="mr-5 mb-2">
             <img
               alt="user"
-              src="https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg"
+              :src="image"
             />
           </v-avatar>
           <span
@@ -52,6 +52,9 @@ export default {
     author: '',
   }),
   computed: {
+    image() {
+      return this.author.image || 'https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg'
+    },
     date() {
       return new Date(this.comment.date).toDateString()
     },

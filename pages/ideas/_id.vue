@@ -55,11 +55,20 @@
     <v-row>
       <v-col>
         <v-text-field
+          v-if="loggedUser"
           v-model="comment"
           label="Add a comment"
           append-icon="mdi-send"
           @click:append="postComment"
           @keyup.enter="postComment"
+          outlined
+          dense
+        ></v-text-field>
+        <v-text-field
+          v-else
+          label="Log in to be able to comment"
+          append-icon="mdi-send"
+          disabled
           outlined
           dense
         ></v-text-field>
@@ -94,11 +103,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   auth: false,
   data: () => ({
     comment: null,
   }),
+  computed: {
+    ...mapGetters(['loggedInUser']),
+  },
   async asyncData({ $axios, params }) {
     return {
       id: params.id,
