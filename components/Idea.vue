@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" min-width="296" max-width="400" color="ideas">
+  <v-card class="mx-auto" width="360" height="356" color="ideas">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
@@ -12,9 +12,9 @@
     </v-list-item>
 
     <v-card-text>
-      <v-row align="center">
+      <v-row>
         <v-col>
-          <span>{{ description }}</span>
+          <span class="description">{{ description }}</span>
         </v-col>
       </v-row>
 
@@ -52,6 +52,7 @@
     <v-divider></v-divider>
 
     <v-card-actions>
+      <v-spacer></v-spacer>
       <v-btn @click="seeMoreDetails" text>More details</v-btn>
     </v-card-actions>
   </v-card>
@@ -79,8 +80,8 @@ export default {
       return new Date(this.idea.date).toDateString()
     },
     description() {
-      if (this.idea.description.length >= 140) {
-        return this.idea.description.substring(0, 140) + ' ...'
+      if (this.idea.description.length >= 199) {
+        return this.idea.description.substring(0, 199) + ' ...'
       } else {
         return this.idea.description
       }
@@ -121,3 +122,11 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.description {
+  display: block;
+  height: 90px;
+  text-align: justify;
+}
+</style>
