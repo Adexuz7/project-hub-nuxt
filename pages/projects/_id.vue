@@ -2,13 +2,13 @@
   <v-container>
     <v-row>
       <v-col>
-        <h1>Idea</h1>
+        <h1>Project</h1>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <IdeaDetails
-          :idea="idea"
+        <ProjectDetails
+          :project="project"
           :all-categories="categories"
           @like="refresh"
         />
@@ -17,23 +17,23 @@
 
     <v-row>
       <v-col>
-        <h4>Projects</h4>
+        <h4>Ideas</h4>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <v-card v-if="idea.projects.length > 0" class="mx-auto">
-          <v-list-item v-for="(project, index) in idea.projects" :key="index">
+        <v-card v-if="project.ideas.length > 0" class="mx-auto">
+          <v-list-item v-for="(idea, index) in project.ideas" :key="index">
             <v-list-item-content>
-              <v-list-item-title> {{ project }} </v-list-item-title>
+              <v-list-item-title> {{ idea }} </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
         <v-card v-else class="mx-auto">
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title> No projects yet </v-list-item-title>
+              <v-list-item-title> No ideas yet </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
@@ -71,8 +71,8 @@
 
     <v-row>
       <v-col>
-        <v-card v-if="idea.comments.length > 0" class="mx-auto" tile>
-          <v-list-item v-for="(comment, index) in idea.comments" :key="index">
+        <v-card v-if="project.comments.length > 0" class="mx-auto" tile>
+          <v-list-item v-for="(comment, index) in project.comments" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->
@@ -105,21 +105,21 @@ export default {
   async asyncData({ $axios, params }) {
     return {
       id: params.id,
-      idea: await $axios.$get(`/ideas/${params.id}`),
+      project: await $axios.$get(`/projects/${params.id}`),
       categories: await $axios.$get('/categories'),
     }
   },
   methods: {
     async refresh() {
-      this.idea = await this.$axios.$get(`/ideas/${this.id}`)
+      this.idea = await this.$axios.$get(`/projects/${this.id}`)
     },
     async postComment() {
       try {
-        await this.$axios.post(`/ideas/${this.id}/comments`, {
+        await this.$axios.post(`/projects/${this.id}/comments`, {
           comment: this.comment,
         })
 
-        this.idea = await this.$axios.$get(`/ideas/${this.id}`)
+        this.idea = await this.$axios.$get(`/projects/${this.id}`)
       } catch (e) {
         this.error = e.response.data.message
       }

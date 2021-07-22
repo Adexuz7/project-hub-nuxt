@@ -31,7 +31,7 @@
       <v-row align="center">
         <v-col>
           <span>
-            <b>{{ description }}</b>
+            <b>{{ project.description }}</b>
           </span>
         </v-col>
       </v-row>
@@ -63,7 +63,7 @@
         <v-col>
           <v-list-item>
             <v-list-item-icon>
-              <a @click="addlikes"><v-icon>mdi-thumb-up</v-icon></a>
+              <a @click="like"><v-icon>mdi-thumb-up</v-icon></a>
               <!-- <a><v-icon>mdi-thumb-up</v-icon></a> -->
             </v-list-item-icon>
             <v-list-item-subtitle>
@@ -73,7 +73,7 @@
         </v-col>
         <v-col class="d-flex justify-center align-center">
           <a :href="project.repository" target="blank">
-            <v-icon>mdi-book</v-icon>
+            <v-icon>mdi-github</v-icon>
           </a>
         </v-col>
         <!-- <v-col>
@@ -87,30 +87,6 @@
           </v-list-item>
         </v-col> -->
       </v-row>
-      <v-row>
-        <v-col>
-          <v-expansion-panels flat>
-            <v-expansion-panel>
-              <v-expansion-panel-header color="blue-grey lighten-5">
-                <v-list-item>
-                  <v-list-item-icon>
-                    <v-icon>mdi-comment</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-subtitle>
-                    <span>{{ project.comments.length }}</span>
-                  </v-list-item-subtitle>
-                </v-list-item>
-              </v-expansion-panel-header>
-
-              <v-expansion-panel-content>
-                <div v-for="(comment, index) in project.comments" :key="index">
-                  <Comment :comment="comment" />
-                </div>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-col>
-      </v-row>
     </v-card-text>
   </v-card>
 </template>
@@ -122,40 +98,47 @@ export default {
       type: Object,
       default: null,
     },
+    allCategories: {
+      type: Array,
+      default: null,
+    },
   },
+  data: () => ({
+    author: 'Unknown',
+  }),
   computed: {
     date() {
       return new Date(this.project.date).toDateString()
     },
-    description() {
-      if (this.project.description.length >= 300) {
-        return this.project.description.substring(0, 300) + ' ...'
-      } else {
-        return this.project.description
-      }
+    categories() {
+      const categoriesNames = []
+
+      this.allCategories.forEach((category) => {
+        this.project.categories.forEach((projectCategory) => {
+          if (projectCategory === category._id) categoriesNames.push(category.name)
+        })
+      })
+
+      return categoriesNames.join(', ')
     },
     likes() {
       return this.project.likes.length
     },
+    comments() {
+      return this.project.comments.length
+    },
+    ideas() {
+      return this.project.ideas.length
+    },
   },
   methods: {
-    async addlikes() {
-      const newProject = await this.$axios.put('/projects/likes/' + this.project._id)
-
-      this.$emit('addlike', newProject.data)
-    }
+    async like() {
+      const project = await this.$axios.put(`/likes/${this.project._id}`)
+      this.$emit('like', project.data)
+    },
   },
+  // async mounted() {
+  //   this.author = await this.$axios.$get(`/users/${this.project.author}`)
+  // },
 }
 </script>
-
-<style scoped>
-a {
-  text-decoration: none;
-}
-
-/* .container {
-  background-image: url("../assets/50-Beautiful-and-Minimalist-Presentation-Backgrounds-02.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
-</style>
