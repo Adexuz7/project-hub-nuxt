@@ -7,7 +7,11 @@
     </v-row>
     <v-row>
       <v-col>
-        <IdeaDetails :idea="idea" :all-categories="categories" @addLikesIdea="addLikeIdea" />
+        <IdeaDetails
+          :idea="idea"
+          :all-categories="categories"
+          @addLikesIdea="addLikeIdea"
+        />
       </v-col>
     </v-row>
 
@@ -19,7 +23,7 @@
 
     <v-row>
       <v-col>
-        <v-card v-if="idea.projects.length > 0" class="mx-auto" tile>
+        <v-card v-if="idea.projects.length > 0" class="mx-auto">
           <v-list-item v-for="(project, index) in idea.projects" :key="index">
             <v-list-item-content>
               <v-list-item-title> {{ project }} </v-list-item-title>
@@ -27,7 +31,7 @@
             <!-- <Comment :comment="comment" /> -->
           </v-list-item>
         </v-card>
-        <v-card v-else class="mx-auto" tile>
+        <v-card v-else class="mx-auto">
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title> No projects yet </v-list-item-title>
@@ -45,6 +49,20 @@
     <v-row>
       <v-col>
         <h4>Comments</h4>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-text-field
+          v-model="comment"
+          label="Add a comment"
+          append-icon="mdi-send"
+          @click:append="postComment"
+          @keyup.enter="postComment"
+          outlined
+          dense
+        ></v-text-field>
       </v-col>
     </v-row>
 
@@ -78,17 +96,24 @@
 <script>
 export default {
   auth: false,
+  data: () => ({
+    comment: null,
+  }),
   async asyncData({ $axios, params }) {
     return {
       id: params.id,
-      idea: await $axios.$get(`/ideas/${ params.id }`),
+      idea: await $axios.$get(`/ideas/${params.id}`),
       categories: await $axios.$get('/categories'),
     }
   },
   methods: {
     async addLikeIdea() {
-      this.idea = await this.$axios.$get(`/ideas/${ this.id }`)
-    }
+      this.idea = await this.$axios.$get(`/ideas/${this.id}`)
+    },
+    postComment() {
+      console.log('Posting a comment', this.comment)
+      this.comment = null
+    },
   },
 }
 
