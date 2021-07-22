@@ -10,14 +10,60 @@
         <IdeaDetails :idea="idea" :all-categories="categories" @addLikesIdea="addLikeIdea" />
       </v-col>
     </v-row>
+
     <v-row>
       <v-col>
-        <v-card class="mx-auto" tile>
+        <h4>Projects</h4>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card v-if="idea.projects.length > 0" class="mx-auto" tile>
+          <v-list-item v-for="(project, index) in idea.projects" :key="index">
+            <v-list-item-content>
+              <v-list-item-title> {{ project }} </v-list-item-title>
+            </v-list-item-content>
+            <!-- <Comment :comment="comment" /> -->
+          </v-list-item>
+        </v-card>
+        <v-card v-else class="mx-auto" tile>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title> No projects yet </v-list-item-title>
+            </v-list-item-content>
+            <!-- <Comment :comment="comment" /> -->
+          </v-list-item>
+        </v-card>
+
+        <!-- <div v-for="(comment, index) in idea.comments" :key="index"> -->
+        <!-- <p>{{comment}}</p> -->
+        <!-- </div> -->
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <h4>Comments</h4>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card v-if="idea.comments.length > 0" class="mx-auto" tile>
           <v-list-item v-for="(comment, index) in idea.comments" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->
             <Comment :comment="comment" />
+          </v-list-item>
+        </v-card>
+        <v-card v-else class="mx-auto" tile>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title> No comments yet </v-list-item-title>
+            </v-list-item-content>
+            <!-- <Comment :comment="comment" /> -->
           </v-list-item>
         </v-card>
 
