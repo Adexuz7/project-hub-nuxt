@@ -6,7 +6,7 @@
       :clipped="clipped"
       app
       mobile-breakpoint="200000"
-      color="pink lighten-4"
+      color="yellow lighten-3"
     >
       <v-list v-if="loggedInUser">
         <v-list-item nuxt to="/profile">
@@ -37,7 +37,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="pink lighten-2" :clipped-left="clipped" app>
+    <v-app-bar color="yellow lighten-1" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large rounded text @click.stop="drawer = !drawer">
         <v-icon>mdi-set-center-right</v-icon>
@@ -49,12 +49,12 @@
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main class="bg-color pink lighten-4">
+    <v-main>
       <v-container>
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer color="pink lighten-3" absolute app>
+    <v-footer color="yellow lighten-2" absolute app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
