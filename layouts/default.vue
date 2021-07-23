@@ -113,6 +113,6 @@ export default {
 }
 
 .bg {
-  background-color: white;
+  background-color: #FAFAFA;
 }
 </style>

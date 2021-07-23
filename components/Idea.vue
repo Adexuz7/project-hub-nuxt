@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="360" height="356" color="ideas">
+  <v-card class="border-idea mx-auto" width="360" height="356" outlined>
     <v-list-item two-line>
       <v-list-item-content class="title">
         <v-list-item-title class="text-h5">
@@ -49,7 +49,7 @@
       </v-row>
     </v-card-text>
 
-    <v-divider></v-divider>
+    <v-divider class="border-idea"></v-divider>
 
     <v-card-actions>
       <v-spacer></v-spacer>
@@ -124,6 +124,10 @@ export default {
 </script>
 
 <style scoped>
+.border-idea {
+  border-color: #FFAB00;
+}
+
 .description {
   display: block;
   height: 90px;
