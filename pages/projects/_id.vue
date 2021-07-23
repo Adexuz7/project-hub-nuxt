@@ -97,7 +97,7 @@
     <v-row>
       <v-col>
         <v-card v-if="project.comments.length > 0" class="mx-auto" tile>
-          <v-list-item v-for="(comment, index) in project.comments.reverse()" :key="index">
+          <v-list-item v-for="(comment, index) in project.comments" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->
@@ -121,6 +121,13 @@ import { mapGetters } from 'vuex'
 
 export default {
   auth: false,
+  async asyncData({ $axios, params }) {
+    return {
+      id: params.id,
+      project: await $axios.$get(`/projects/${params.id}`),
+      categories: await $axios.$get('/categories'),
+    }
+  },
   data: () => ({
     comment: null,
   }),
@@ -144,13 +151,6 @@ export default {
       }
 
       this.comment = null
-    }
-  },
-  async asyncData({ $axios, params }) {
-    return {
-      id: params.id,
-      project: await $axios.$get(`/projects/${params.id}`),
-      categories: await $axios.$get('/categories'),
     }
   },
 }
