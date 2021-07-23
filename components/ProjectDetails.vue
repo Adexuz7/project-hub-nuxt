@@ -1,10 +1,5 @@
 <template>
-  <v-card
-    class="mx-auto"
-    min-width="296"
-    max-width="600"
-    color="projects"
-  >
+  <v-card class="mx-auto" color="projects">
     <v-img
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       class="align-center justify-center"
@@ -38,54 +33,36 @@
 
       <v-row>
         <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-folder</v-icon>
-            </v-list-item-icon>
-            <v-list-item-subtitle>
-              <span>{{ project.categories.join(', ') }}</span>
-            </v-list-item-subtitle>
-          </v-list-item>
+          <v-chip :input-value="false" label outlined>
+            <v-icon small left> mdi-folder </v-icon>
+            <span class="ml-1"> {{ categories }} </span>
+          </v-chip>
         </v-col>
       </v-row>
 
       <v-row>
         <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-account-group</v-icon>
-            </v-list-item-icon>
-            <v-list-item-subtitle>
-              <span>{{ project.team.join(', ') }}</span>
-            </v-list-item-subtitle>
-          </v-list-item>
+          <v-chip label outlined @click="like">
+            <v-icon small left> mdi-thumb-up </v-icon>
+            <span class="ml-1"> {{ likes }} </span>
+          </v-chip>
+          <v-chip :input-value="false" label outlined>
+            <v-icon small left> mdi-comment </v-icon>
+            <span class="ml-1"> {{ comments }} </span>
+          </v-chip>
+          <v-chip label outlined>
+            <v-icon small left> mdi-account-group </v-icon>
+            <span class="ml-1"> {{ team }} </span>
+          </v-chip>
+          <v-chip :input-value="false" label outlined>
+            <v-icon small left> mdi-lightbulb </v-icon>
+            <span class="ml-1"> {{ ideas }} </span>
+          </v-chip>
+          <v-chip :input-value="false" label outlined @click="toGitHub">
+            <v-icon small left> mdi-github </v-icon>
+            <span class="ml-1"> GitHub </span>
+          </v-chip>
         </v-col>
-        <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <a @click="like"><v-icon>mdi-thumb-up</v-icon></a>
-              <!-- <a><v-icon>mdi-thumb-up</v-icon></a> -->
-            </v-list-item-icon>
-            <v-list-item-subtitle>
-              <span>{{ likes }}</span>
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-col>
-        <v-col class="d-flex justify-center align-center">
-          <a :href="project.repository" target="blank">
-            <v-icon>mdi-github</v-icon>
-          </a>
-        </v-col>
-        <!-- <v-col>
-          <v-list-item>
-            <v-list-item-icon>
-              <button><v-icon>mdi-alert-circle-outline</v-icon></button>
-            </v-list-item-icon>
-            <v-list-item-subtitle>
-              <span>{{ project.issues.join(", ") }}</span>
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-col> -->
       </v-row>
     </v-card-text>
   </v-card>
@@ -110,19 +87,21 @@ export default {
     date() {
       return new Date(this.project.date).toDateString()
     },
+    description() {
+      if (this.project.description.length >= 300) {
+        return this.project.description.substring(0, 300) + ' ...'
+      } else {
+        return this.project.description
+      }
+    },
     categories() {
-      const categoriesNames = []
-
-      this.allCategories.forEach((category) => {
-        this.project.categories.forEach((projectCategory) => {
-          if (projectCategory === category._id) categoriesNames.push(category.name)
-        })
-      })
-
-      return categoriesNames.join(', ')
+      return this.project.categories.join(', ')
     },
     likes() {
       return this.project.likes.length
+    },
+    team() {
+      return this.project.team.length
     },
     comments() {
       return this.project.comments.length
@@ -133,12 +112,15 @@ export default {
   },
   methods: {
     async like() {
-      const project = await this.$axios.put(`/likes/${this.project._id}`)
-      this.$emit('like', project.data)
+      const newProject = await this.$axios.put(
+        '/projects/likes/' + this.project._id
+      )
+
+      this.$emit('like', newProject.data)
+    },
+    toGitHub() {
+      window.open(this.project.repository)
     },
   },
-  // async mounted() {
-  //   this.author = await this.$axios.$get(`/users/${this.project.author}`)
-  // },
 }
 </script>

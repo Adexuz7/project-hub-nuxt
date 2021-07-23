@@ -17,6 +17,31 @@
 
     <v-row>
       <v-col>
+        <h4>Members</h4>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card v-if="project.team.length > 0" class="mx-auto">
+          <v-list-item v-for="(member, index) in project.team" :key="index">
+            <v-list-item-content>
+              <v-list-item-title> {{ member }} </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+        <v-card v-else class="mx-auto">
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title> No members </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
         <h4>Ideas</h4>
       </v-col>
     </v-row>
@@ -111,7 +136,7 @@ export default {
   },
   methods: {
     async refresh() {
-      this.idea = await this.$axios.$get(`/projects/${this.id}`)
+      this.project = await this.$axios.$get(`/projects/${this.id}`)
     },
     async postComment() {
       try {
