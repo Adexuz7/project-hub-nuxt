@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <NewProject v-if="isAuthenticated" :select-categories="categories" @projectCreated="getProjects"></NewProject>
+        <NewProject v-if="$auth.$state.loggedIn" :selectCategories="categories" @projectCreated="getProjects"></NewProject>
       </v-col>
     </v-row>
     <v-row>
@@ -25,6 +25,7 @@ export default {
   async asyncData({ $axios }) {
     return {
       projects: await $axios.$get('/projects'),
+      categories: await $axios.$get('/categories')
     }
   },
   methods: {

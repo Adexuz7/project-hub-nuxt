@@ -117,6 +117,7 @@
 
 <script>
 export default {
+  name: 'Project',
   props: {
     project: {
       type: Object,
