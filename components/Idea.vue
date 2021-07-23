@@ -53,7 +53,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="#730400" text @click="seeMoreDetails">More details</v-btn>
+      <v-btn text @click="seeMoreDetails">More details</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -124,12 +124,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-.title-idea {
-  font-family: 'Indie Flower', cursive;
-  font-weight: bold;
-}
-
 .description {
   display: block;
   height: 90px;

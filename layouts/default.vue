@@ -2,7 +2,6 @@
   <v-app dark>
     <v-navigation-drawer
       v-model="drawer"
-      color="#FFDCDC"
       :mini-variant="miniVariant"
       :clipped="clipped"
       app
@@ -29,17 +28,17 @@
         exact
       >
         <v-list-item-action>
-          <v-icon color="#DBA800">{{ item.icon }}</v-icon>
+          <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-action>
         <v-list-item-content>
           <v-list-item-title v-text="item.title" />
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="#DA2D25" flat :clipped-left="clipped" app>
+    <v-app-bar color="navbar" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large text @click.stop="drawer = !drawer">
-        <v-icon color="#FFE288">mdi-menu</v-icon>
+        <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
       <nuxt-link class="title" to="/">
@@ -47,7 +46,7 @@
       </nuxt-link>
       <v-spacer />
       <v-btn class="btn-profile" large text to="/profile">
-        <v-icon color="#FFE288">mdi-account</v-icon>
+        <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main class="bg">
@@ -107,13 +106,13 @@ export default {
 }
 
 .title {
-  color: #FFE288;
+  color: black;
   font-family: 'Montserrat', sans-serif !important;
   font-weight: bold;
   text-decoration: none;
 }
 
 .bg {
-  background-color: #FFDCDC;
+  background-color: white;
 }
 </style>
