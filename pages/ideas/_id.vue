@@ -73,9 +73,6 @@
       <v-col>
         <v-card v-if="idea.comments.length > 0" class="mx-auto" tile>
           <v-list-item v-for="(comment, index) in idea.comments" :key="index">
-            <!-- <v-list-item-content>
-              <v-list-item-title>Single-line item</v-list-item-title>
-            </v-list-item-content> -->
             <Comment :comment="comment" />
           </v-list-item>
         </v-card>
