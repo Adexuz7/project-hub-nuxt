@@ -20,11 +20,11 @@
 
       <v-row>
         <v-col>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-folder </v-icon>
             <span class="ml-1"> {{ categories }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-arm-flex </v-icon>
             <span class="ml-1"> {{ idea.difficulty }} </span>
           </v-chip>
@@ -33,15 +33,15 @@
 
       <v-row>
         <v-col>
-          <v-chip label outlined  @click="addLikesIdea">
+          <v-chip class="border-label px-5" label outlined  @click="addLikesIdea">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-comment </v-icon>
             <span class="ml-1"> {{ comments }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-file </v-icon>
             <span class="ml-1"> {{ projects }} </span>
           </v-chip>
@@ -49,11 +49,9 @@
       </v-row>
     </v-card-text>
 
-    <v-divider class="border-idea"></v-divider>
-
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn text @click="seeMoreDetails">More details</v-btn>
+      <v-btn color="orange darken-4" text @click="seeMoreDetails">More details</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -126,6 +124,10 @@ export default {
 <style scoped>
 .border-idea {
   border-color: #FFAB00;
+}
+
+.border-label {
+  border: none;
 }
 
 .description {

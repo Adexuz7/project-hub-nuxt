@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" color="ideas">
+  <v-card class="border-idea mx-auto" outlined>
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
@@ -20,11 +20,11 @@
 
       <v-row>
         <v-col>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-folder </v-icon>
             <span class="ml-1"> {{ categories }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-arm-flex </v-icon>
             <span class="ml-1"> {{ idea.difficulty }} </span>
           </v-chip>
@@ -33,15 +33,15 @@
 
       <v-row>
         <v-col>
-          <v-chip @click="like" label outlined>
+          <v-chip class="border-label px-5" @click="like" label outlined>
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-comment </v-icon>
             <span class="ml-1"> {{ comments }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-file </v-icon>
             <span class="ml-1"> {{ projects }} </span>
           </v-chip>
@@ -102,3 +102,20 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.border-idea {
+  border-color: #FFAB00
+;
+}
+
+.border-label {
+  border: none;
+}
+
+.description {
+  display: block;
+  height: 90px;
+  text-align: justify;
+}
+</style>
