@@ -52,10 +52,10 @@
           v-model="comment"
           label="Add a comment"
           append-icon="mdi-send"
-          @click:append="postComment"
-          @keyup.enter="postComment"
           outlined
           dense
+          @click:append="postComment"
+          @keyup.enter="postComment"
         ></v-text-field>
       </v-col>
       <v-col v-else>
@@ -72,7 +72,7 @@
     <v-row>
       <v-col>
         <v-card v-if="idea.comments.length > 0" class="mx-auto" tile>
-          <v-list-item v-for="(comment, index) in idea.comments" :key="index">
+          <v-list-item v-for="(comment, index) in idea.comments.reverse()" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->

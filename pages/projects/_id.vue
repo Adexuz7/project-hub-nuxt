@@ -77,10 +77,10 @@
           v-model="comment"
           label="Add a comment"
           append-icon="mdi-send"
-          @click:append="postComment"
-          @keyup.enter="postComment"
           outlined
           dense
+          @click:append="postComment"
+          @keyup.enter="postComment"
         ></v-text-field>
       </v-col>
       <v-col v-else>
@@ -97,7 +97,7 @@
     <v-row>
       <v-col>
         <v-card v-if="project.comments.length > 0" class="mx-auto" tile>
-          <v-list-item v-for="(comment, index) in project.comments" :key="index">
+          <v-list-item v-for="(comment, index) in project.comments.reverse()" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->
@@ -127,13 +127,6 @@ export default {
   computed: {
     ...mapGetters(['loggedInUser']),
   },
-  async asyncData({ $axios, params }) {
-    return {
-      id: params.id,
-      project: await $axios.$get(`/projects/${params.id}`),
-      categories: await $axios.$get('/categories'),
-    }
-  },
   methods: {
     async refresh() {
       this.project = await this.$axios.$get(`/projects/${this.id}`)
@@ -142,15 +135,23 @@ export default {
       try {
         await this.$axios.post(`/projects/${this.id}/comments`, {
           comment: this.comment,
+          author: this.loggedInUser.id
         })
 
-        this.idea = await this.$axios.$get(`/projects/${this.id}`)
+        this.project = await this.$axios.$get(`/projects/${this.id}`)
       } catch (e) {
         this.error = e.response.data.message
       }
 
       this.comment = null
     },
+  },
+  async asyncData({ $axios, params }) {
+    return {
+      id: params.id,
+      project: await $axios.$get(`/projects/${params.id}`),
+      categories: await $axios.$get('/categories'),
+    }
   },
 }
 </script>

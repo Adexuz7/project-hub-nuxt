@@ -5,7 +5,7 @@
         <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header>
-              <span>Create a new idea</span>
+              <span>Create a new project (unfinished)</span>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-container>

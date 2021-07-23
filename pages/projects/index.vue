@@ -21,12 +21,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   auth: false,
   async asyncData({ $axios }) {
     return {
       projects: await $axios.$get('/projects'),
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
   },
   methods: {
     async getProjects() {
