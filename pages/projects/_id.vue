@@ -144,7 +144,7 @@ export default {
       }
 
       this.comment = null
-    },
+    }
   },
   async asyncData({ $axios, params }) {
     return {

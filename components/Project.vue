@@ -90,6 +90,13 @@
         </v-col>
       </v-row>
     </v-card-text>
+
+    <v-divider></v-divider>
+
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn color="#730400" text @click="seeMoreDetails">More details</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -138,6 +145,9 @@ export default {
     },
     toGitHub() {
       window.open(this.project.repository)
+    },
+    seeMoreDetails() {
+      this.$router.push(`/projects/${this.project._id}`)
     },
   },
 }
