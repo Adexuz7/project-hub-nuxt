@@ -18,8 +18,15 @@
             <div class="slide">{{ slide.description }}</div>
           </v-row>
           <v-fade-transition>
-            <v-overlay v-if="hover" absolute color="#FFE0B2" class="d-flex align-end">
-              <v-btn class="mb-12" @click="redirect(slide.path)">See more info</v-btn>
+            <v-overlay
+              v-if="hover"
+              absolute
+              color="#FFE0B2"
+              class="d-flex align-end"
+            >
+              <v-btn class="mb-12" @click="redirect(slide.path)"
+                >See more info</v-btn
+              >
             </v-overlay>
           </v-fade-transition>
         </v-carousel-item>
@@ -27,9 +34,60 @@
     </v-hover>
     <v-row class="header">
       <v-col>
-        <h1>
-          Browse into thousands ideas from +1.000.000 users
-        </h1>
+        <h1>Browse into thousands ideas from +1.000.000 users</h1>
+        <hr />
+        <h1>Where do we start?</h1>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-card class="mx-auto" max-width="400">
+          <v-img
+            class="white--text align-end"
+            height="200px"
+            src="http://edap.es/wp-content/uploads/blog9-img-01.jpg"
+          >
+            <v-card-title class="card2">Create a project or browse</v-card-title>
+          </v-img>
+
+          <v-card-text class="text--primary">
+            <div>Create a project or browse around thousands options</div>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="orange" text >
+              Create
+            </v-btn>
+
+            <v-btn color="orange" text @click="redirect(shortcuts.path)">
+              Exlore
+            </v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+      <v-col>
+        <v-card class="mx-auto" max-width="400">
+          <v-img
+            class="white--text align-end"
+            height="200px"
+            src="https://blogs.iadb.org/conocimiento-abierto/wp-content/uploads/sites/10/2019/09/banner-siete-pasos-gestion-proyectos.jpg"
+          >
+            <v-card-title class="card1">Create an idea or browse</v-card-title>
+          </v-img>
+          <v-card-text class="text--primary">
+            <div>Create an idea or browse around thousands options</div>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="orange" text> Create </v-btn>
+
+            <v-btn color="orange" text @click="redirect(shortcuts.path)"> Explore </v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
       </v-col>
     </v-row>
   </div>
@@ -66,6 +124,14 @@ export default {
         },
       ],
       overlay: false,
+      shortcuts: [
+        {
+          path: '/projects/',
+        },
+        {
+          path: '/ideas/',
+        },
+      ],
     }
   },
   methods: {
@@ -77,13 +143,13 @@ export default {
 </script>
 
 <style scoped>
-
 .slide {
   color: rgb(255, 255, 255);
-  font-size: 70px;
-  background-color: rgba(241, 132, 209, 0.5);
+  font-size: 60px;
+  background-color: rgba(146, 149, 151, 0.5);
   width: 1161px;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .header {
@@ -93,15 +159,25 @@ export default {
 
 .SeeMore {
   justify-content: center;
-
 }
 
 h1 {
   font-size: 40px;
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: 'Montserrat Alternates', sans-serif;
- font-style: normal;
- font-weight: 300;
+  font-style: normal;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card1 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.card2 {
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 </style>

@@ -3,6 +3,7 @@
     <v-row>
       <v-col>
         <h1>Explore projects</h1>
+        <hr>
       </v-col>
     </v-row>
     <v-row>
@@ -40,3 +41,14 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+h1 {
+display: flex;
+justify-content: center;
+font-family: 'Satisfy', 'Montserrat Alternates', sans-serif;
+letter-spacing: 10px;
+}
+</style>

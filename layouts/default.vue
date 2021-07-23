@@ -6,7 +6,6 @@
       :clipped="clipped"
       app
       mobile-breakpoint="200000"
-      color="yellow lighten-3"
     >
       <v-list v-if="loggedInUser">
         <v-list-item nuxt to="/profile">
@@ -27,25 +26,26 @@
         :to="item.to"
         router
         exact
-
       >
         <v-list-item-action>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-action>
-        <v-list-item-content >
+        <v-list-item-content>
           <v-list-item-title v-text="item.title" />
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="yellow lighten-1" flat :clipped-left="clipped" app>
+    <v-app-bar color="purple lighten-1" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
-      <v-btn large rounded text @click.stop="drawer = !drawer">
+      <v-btn large text @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
       </v-btn>
       <v-spacer />
-      <v-toolbar-title v-text="title" />
+      <nuxt-link class="title" to="/">
+        <v-toolbar-title v-text="title" />
+      </nuxt-link>
       <v-spacer />
-      <v-btn class="btn-profile" large rounded text to="/profile">
+      <v-btn class="btn-profile" large text to="/profile">
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
@@ -54,7 +54,7 @@
         <Nuxt />
       </v-container>
     </v-main>
-    <v-footer color="yellow lighten-2" absolute app>
+    <v-footer color="#E0E0E0" absolute app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -70,7 +70,7 @@ export default {
       drawer: false,
       items: [
         {
-          icon: 'mdi-home',
+          icon: 'mdi-set-center-right',
           title: 'Home',
           to: '/',
         },
@@ -85,13 +85,13 @@ export default {
           to: '/projects',
         },
         {
-          icon:'mdi-account-group',
-          title:'Teams',
-          to:'/teams'
+          icon: 'mdi-account-group',
+          title: 'Teams',
+          to: '/teams',
         },
       ],
       miniVariant: false,
-      title: 'ProjectHub',
+      title: 'Project Hub',
     }
   },
   computed: {
@@ -103,5 +103,12 @@ export default {
 <style scoped>
 .btn-profile.v-btn--active::before {
   opacity: 0;
+}
+
+.title {
+  color: black;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: bold;
+  text-decoration: none;
 }
 </style>

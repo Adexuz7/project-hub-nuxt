@@ -1,9 +1,9 @@
 <template>
   <v-card class="mx-auto" width="360" height="356" color="ideas">
     <v-list-item two-line>
-      <v-list-item-content>
+      <v-list-item-content class="title">
         <v-list-item-title class="text-h5">
-          <span>{{ idea.name }}</span>
+          <span class="title-idea">{{ idea.name }}</span>
         </v-list-item-title>
         <v-list-item-subtitle>
           <span>{{ date }}, {{ author.name }}</span>
@@ -124,6 +124,12 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+.title-idea {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
 .description {
   display: block;
   height: 90px;

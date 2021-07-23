@@ -7,6 +7,12 @@
     </v-row>
     <v-row>
       <v-col>
+        <span>Already registered?</span>
+        <v-btn x-small outlined rounded color="secondary" nuxt to="/login">Log in</v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <v-card class="mx-auto" max-width="400" outlined>
           <v-list-item>
             <!--  -->

@@ -33,7 +33,7 @@
 
       <v-row>
         <v-col>
-          <v-chip @click="addLikesIdea" label outlined>
+          <v-chip @click="like" label outlined>
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -92,10 +92,9 @@ export default {
     },
   },
   methods: {
-    async addLikesIdea() {
-      const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
-
-      this.$emit('addLikesIdea', newIdea.data)
+    async like() {
+      const idea = await this.$axios.put(`/ideas/likes/${this.idea._id}`)
+      this.$emit('like', idea.data)
     },
   },
   async mounted() {
