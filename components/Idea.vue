@@ -33,7 +33,7 @@
 
       <v-row>
         <v-col>
-          <v-chip @click="addLikesIdea" label outlined>
+          <v-chip label outlined  @click="addLikesIdea">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -53,7 +53,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn @click="seeMoreDetails" text>More details</v-btn>
+      <v-btn color="#730400" text @click="seeMoreDetails">More details</v-btn>
     </v-card-actions>
   </v-card>
 </template>

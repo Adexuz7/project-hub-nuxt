@@ -41,7 +41,7 @@
                       outlined
                       dense
                     ></v-select>
-                    <v-btn block color="purple lighten-3" @click="newIdea"> New idea </v-btn>
+                    <v-btn block color="primary" @click="newIdea"> New idea </v-btn>
                   </v-col>
                 </v-row>
               </v-container>
