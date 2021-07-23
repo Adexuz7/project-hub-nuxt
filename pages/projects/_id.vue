@@ -17,6 +17,31 @@
 
     <v-row>
       <v-col>
+        <h4>Members</h4>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card v-if="project.team.length > 0" class="mx-auto">
+          <v-list-item v-for="(member, index) in project.team" :key="index">
+            <v-list-item-content>
+              <v-list-item-title> {{ member }} </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+        <v-card v-else class="mx-auto">
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title> No members </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
         <h4>Ideas</h4>
       </v-col>
     </v-row>
@@ -52,10 +77,10 @@
           v-model="comment"
           label="Add a comment"
           append-icon="mdi-send"
-          @click:append="postComment"
-          @keyup.enter="postComment"
           outlined
           dense
+          @click:append="postComment"
+          @keyup.enter="postComment"
         ></v-text-field>
       </v-col>
       <v-col v-else>
@@ -96,12 +121,6 @@ import { mapGetters } from 'vuex'
 
 export default {
   auth: false,
-  data: () => ({
-    comment: null,
-  }),
-  computed: {
-    ...mapGetters(['loggedInUser']),
-  },
   async asyncData({ $axios, params }) {
     return {
       id: params.id,
@@ -109,23 +128,30 @@ export default {
       categories: await $axios.$get('/categories'),
     }
   },
+  data: () => ({
+    comment: null,
+  }),
+  computed: {
+    ...mapGetters(['loggedInUser']),
+  },
   methods: {
     async refresh() {
-      this.idea = await this.$axios.$get(`/projects/${this.id}`)
+      this.project = await this.$axios.$get(`/projects/${this.id}`)
     },
     async postComment() {
       try {
         await this.$axios.post(`/projects/${this.id}/comments`, {
           comment: this.comment,
+          author: this.loggedInUser.id
         })
 
-        this.idea = await this.$axios.$get(`/projects/${this.id}`)
+        this.project = await this.$axios.$get(`/projects/${this.id}`)
       } catch (e) {
         this.error = e.response.data.message
       }
 
       this.comment = null
-    },
+    }
   },
 }
 </script>

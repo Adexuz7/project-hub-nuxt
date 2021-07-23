@@ -35,7 +35,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-navigation-drawer>
-    <v-app-bar color="purple lighten-1" flat :clipped-left="clipped" app>
+    <v-app-bar color="navbar" flat :clipped-left="clipped" app>
       <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
       <v-btn large text @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
@@ -49,7 +49,7 @@
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main>
+    <v-main class="bg">
       <v-container>
         <Nuxt />
       </v-container>
@@ -110,5 +110,9 @@ export default {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: bold;
   text-decoration: none;
+}
+
+.bg {
+  background-color: white;
 }
 </style>

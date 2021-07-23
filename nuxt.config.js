@@ -91,9 +91,10 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.deepPurple,
-          ideas: colors.purple.lighten4,
-          projects: colors.purple.lighten4
+          primary: colors.orange,
+          navbar: colors.amber.lighten2,
+          ideas: colors.yellow.lighten3,
+          projects: colors.orange.lighten3
         },
         dark: {
           primary: colors.orange.darken2,

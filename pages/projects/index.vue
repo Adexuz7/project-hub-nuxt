@@ -6,11 +6,11 @@
         <hr>
       </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col>
         <NewProject v-if="$auth.$state.loggedIn" :selectCategories="categories" @projectCreated="getProjects"></NewProject>
       </v-col>
-    </v-row>
+    </v-row> -->
     <v-row>
       <v-col v-for="(project, index) in projects" :key="index">
         <!-- <Project :project="project" @addlike="getProjects" /> -->
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   auth: false,
   async asyncData({ $axios }) {
@@ -28,6 +30,9 @@ export default {
       projects: await $axios.$get('/projects'),
       categories: await $axios.$get('/categories')
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
   },
   methods: {
     async getProjects() {
