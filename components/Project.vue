@@ -64,31 +64,6 @@
           </v-chip>
         </v-col>
       </v-row>
-
-      <v-row>
-        <v-col>
-          <v-expansion-panels flat>
-            <v-expansion-panel>
-              <v-expansion-panel-header color="blue-grey lighten-5">
-                <v-list-item>
-                  <v-list-item-icon>
-                    <v-icon>mdi-comment</v-icon>
-                  </v-list-item-icon>
-                  <v-list-item-subtitle>
-                    <span>{{ comments }}</span>
-                  </v-list-item-subtitle>
-                </v-list-item>
-              </v-expansion-panel-header>
-
-              <v-expansion-panel-content>
-                <div v-for="(comment, index) in project.comments" :key="index">
-                  <Comment :comment="comment" />
-                </div>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-col>
-      </v-row>
     </v-card-text>
 
     <v-divider></v-divider>
