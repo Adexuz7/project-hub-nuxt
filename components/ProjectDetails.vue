@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" color="projects">
+  <v-card class="border-project mx-auto" outlined>
     <v-img
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       class="align-center justify-center"
@@ -33,34 +33,40 @@
 
       <v-row>
         <v-col>
-          <v-chip :input-value="false" label outlined>
+          <v-chip
+            class="border-label px-5"
+            :input-value="false"
+            label
+            outlined
+            @click="toGitHub"
+          >
+            <v-icon small left> mdi-github </v-icon>
+            <span class="ml-1"> GitHub </span>
+          </v-chip>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-folder </v-icon>
             <span class="ml-1"> {{ categories }} </span>
           </v-chip>
         </v-col>
       </v-row>
 
-      <v-row>
+      <v-row class="my-0">
         <v-col>
-          <v-chip label outlined @click="like">
+          <v-chip class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-comment </v-icon>
             <span class="ml-1"> {{ comments }} </span>
           </v-chip>
-          <v-chip label outlined>
+          <v-chip class="border-label px-5" label outlined>
             <v-icon small left> mdi-account-group </v-icon>
             <span class="ml-1"> {{ team }} </span>
           </v-chip>
-          <v-chip :input-value="false" label outlined>
+          <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-lightbulb </v-icon>
             <span class="ml-1"> {{ ideas }} </span>
-          </v-chip>
-          <v-chip :input-value="false" label outlined @click="toGitHub">
-            <v-icon small left> mdi-github </v-icon>
-            <span class="ml-1"> GitHub </span>
           </v-chip>
         </v-col>
       </v-row>
@@ -124,3 +130,19 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.border-project {
+  border-color: #ffab00;
+}
+
+.border-label {
+  border: none;
+}
+
+.description {
+  display: block;
+  height: 154px;
+  text-align: justify;
+}
+</style>
