@@ -60,9 +60,9 @@
               Create
             </v-btn>
 
-            <v-btn color="orange" text @click="redirect(shortcuts.path)">
+           <nuxt-link to="/projects/"><v-btn color="orange" text >
               Exlore
-            </v-btn>
+            </v-btn></nuxt-link> 
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -82,9 +82,9 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="orange" text> Create </v-btn>
+            <nuxt-link ><v-btn color="orange" text> Create </v-btn></nuxt-link>
 
-            <v-btn color="orange" text @click="redirect(shortcuts.path)"> Explore </v-btn>
+            <nuxt-link to="/ideas/"><v-btn color="orange" text> Explore </v-btn></nuxt-link>
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
