@@ -51,7 +51,7 @@
         <v-card v-if="project.ideas.length > 0" class="mx-auto" outlined>
           <v-list-item v-for="(idea, index) in project.ideas" :key="index">
             <v-list-item-content>
-              <v-list-item-title> {{ idea }} </v-list-item-title>
+              <v-list-item-title> {{ idea.name }} </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
