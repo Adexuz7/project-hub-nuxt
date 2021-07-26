@@ -23,14 +23,14 @@
 
     <v-row>
       <v-col>
-        <v-card v-if="project.team.length > 0" class="mx-auto">
+        <v-card v-if="project.team.length > 0" class="mx-auto" outlined>
           <v-list-item v-for="(member, index) in project.team" :key="index">
             <v-list-item-content>
               <v-list-item-title> {{ member }} </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
-        <v-card v-else class="mx-auto">
+        <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title> No members </v-list-item-title>
@@ -48,14 +48,14 @@
 
     <v-row>
       <v-col>
-        <v-card v-if="project.ideas.length > 0" class="mx-auto">
+        <v-card v-if="project.ideas.length > 0" class="mx-auto" outlined>
           <v-list-item v-for="(idea, index) in project.ideas" :key="index">
             <v-list-item-content>
               <v-list-item-title> {{ idea }} </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
-        <v-card v-else class="mx-auto">
+        <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title> No ideas yet </v-list-item-title>
@@ -96,7 +96,7 @@
 
     <v-row>
       <v-col>
-        <v-card v-if="project.comments.length > 0" class="mx-auto" tile>
+        <v-card v-if="project.comments.length > 0" class="mx-auto" outlined>
           <v-list-item v-for="(comment, index) in project.comments" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
@@ -104,7 +104,7 @@
             <Comment :comment="comment" />
           </v-list-item>
         </v-card>
-        <v-card v-else class="mx-auto" tile>
+        <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title> No comments yet </v-list-item-title>

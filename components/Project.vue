@@ -33,13 +33,19 @@
 
       <v-row>
         <v-col>
+          <v-chip
+            class="border-label px-5"
+            :input-value="false"
+            label
+            outlined
+            @click="toGitHub"
+          >
+            <v-icon small left> mdi-github </v-icon>
+            <span class="ml-1"> GitHub </span>
+          </v-chip>
           <v-chip class="border-label px-5" :input-value="false" label outlined>
             <v-icon small left> mdi-folder </v-icon>
             <span class="ml-1"> {{ categories }} </span>
-          </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined @click="toGitHub">
-            <v-icon small left> mdi-github </v-icon>
-            <span class="ml-1"> GitHub </span>
           </v-chip>
         </v-col>
       </v-row>
@@ -68,7 +74,9 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails">More details</v-btn>
+      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails"
+        >More details</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -127,12 +135,8 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration: none;
-}
-
 .border-project {
-  border-color: #FFAB00;
+  border-color: #ffab00;
 }
 
 .border-label {
