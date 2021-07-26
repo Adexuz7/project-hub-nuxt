@@ -47,7 +47,9 @@
             height="200px"
             src="http://edap.es/wp-content/uploads/blog9-img-01.jpg"
           >
-            <v-card-title class="card2">Create a project or browse</v-card-title>
+            <v-card-title class="card2"
+              >Create a project or browse</v-card-title
+            >
           </v-img>
 
           <v-card-text class="text--primary">
@@ -56,13 +58,9 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="orange" text >
-              Create
-            </v-btn>
-
-           <nuxt-link to="/projects/"><v-btn color="orange" text >
-              Exlore
-            </v-btn></nuxt-link> 
+            <nuxt-link to="/projects/"
+              ><v-btn color="orange" text> Exlore </v-btn></nuxt-link
+            >
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
@@ -81,10 +79,10 @@
           </v-card-text>
 
           <v-card-actions>
-            <v-spacer></v-spacer>
-            <nuxt-link ><v-btn color="orange" text> Create </v-btn></nuxt-link>
-
-            <nuxt-link to="/ideas/"><v-btn color="orange" text> Explore </v-btn></nuxt-link>
+            <v-spacer></v-spacer>   
+            <nuxt-link to="/ideas/"
+              ><v-btn color="orange" text> Explore </v-btn></nuxt-link
+            >
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
