@@ -72,7 +72,7 @@
     <v-row>
       <v-col>
         <v-card v-if="idea.comments.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(comment, index) in idea.comments" :key="index">
+          <v-list-item v-for="(comment, index) in comments" :key="index">
             <Comment :comment="comment" />
           </v-list-item>
         </v-card>
@@ -105,6 +105,9 @@ export default {
   }),
   computed: {
     ...mapGetters(['loggedInUser']),
+    comments() {
+      return this.idea.comments.slice().reverse()
+    },
   },
   methods: {
     async refresh() {

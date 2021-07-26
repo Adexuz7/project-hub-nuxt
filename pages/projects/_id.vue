@@ -97,7 +97,7 @@
     <v-row>
       <v-col>
         <v-card v-if="project.comments.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(comment, index) in project.comments" :key="index">
+          <v-list-item v-for="(comment, index) in comments" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->
@@ -133,6 +133,9 @@ export default {
   }),
   computed: {
     ...mapGetters(['loggedInUser']),
+    comments() {
+      return this.project.comments.slice().reverse()
+    },
   },
   methods: {
     async refresh() {
