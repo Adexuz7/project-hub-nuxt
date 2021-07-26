@@ -93,8 +93,6 @@ export default {
         light: {
           primary: colors.orange,
           navbar: colors.amber.lighten2,
-          ideas: '#FFF9C4',
-          projects: colors.orange.lighten3
         },
         dark: {
           primary: colors.orange.darken2,
