@@ -41,7 +41,10 @@
                       outlined
                       dense
                     ></v-select>
-                    <v-btn block color="primary" @click="newIdea"> New idea </v-btn>
+                    <v-btn
+                    :disabled="!valid"
+                    block color="primary"
+                    @click="newIdea"> New idea </v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -63,6 +66,7 @@ export default {
     },
   },
   data: () => ({
+    valid: false,
     name: '',
     description: '',
     categories: [],

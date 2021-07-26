@@ -54,7 +54,7 @@
               :type="show ? 'text' : 'password'"
               :append-icon="show ? 'mdi-eye-off' : 'mdi-eye'"
               @click:append="show = !show"
-              @keyup.enter="login"
+              @keyup.enter="signup"
             ></v-text-field>
           </v-list-item>
 
