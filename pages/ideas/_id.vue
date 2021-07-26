@@ -24,11 +24,13 @@
     <v-row>
       <v-col>
         <v-card v-if="idea.projects.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(project, index) in idea.projects" :key="index">
-            <v-list-item-content>
-              <v-list-item-title> {{ project.name }} </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <div v-for="(project, index) in idea.projects" :key="index">
+            <v-list-item :to="`/projects/${project._id}`">
+              <v-list-item-content>
+                <v-list-item-title> {{ project.name }} </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </div>
         </v-card>
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
