@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-expansion-panels v-model="open">
+        <v-expansion-panels>
           <v-expansion-panel>
             <v-expansion-panel-header>
               <span>Create a new idea</span>
@@ -66,7 +66,6 @@ export default {
     },
   },
   data: () => ({
-    valid: false,
     name: '',
     description: '',
     categories: [],
@@ -87,5 +86,10 @@ export default {
       this.$emit('ideaCreated')
     },
   },
+  computed: {
+    valid(){
+      return(this.name !== '' && this.description !== '' && this.categories !== Object && this.difficulty !== '')
+    }
+  }
 }
 </script>
