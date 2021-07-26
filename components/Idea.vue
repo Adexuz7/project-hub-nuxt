@@ -1,5 +1,5 @@
 <template>
-  <v-card class="border-idea mx-auto" width="360" height="356" outlined>
+  <v-card class="border-idea mx-auto" width="360" height="358" outlined>
     <v-list-item two-line>
       <v-list-item-content class="title">
         <v-list-item-title class="text-h5">
@@ -31,7 +31,7 @@
         </v-col>
       </v-row>
 
-      <v-row>
+      <v-row class="my-0">
         <v-col>
           <v-chip class="border-label px-5" label outlined  @click="addLikesIdea">
             <v-icon small left> mdi-thumb-up </v-icon>
@@ -51,7 +51,7 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="orange darken-4" text @click="seeMoreDetails">More details</v-btn>
+      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails">More details</v-btn>
     </v-card-actions>
   </v-card>
 </template>
