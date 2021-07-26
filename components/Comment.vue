@@ -6,7 +6,7 @@ no<template>
             <img alt="user" :src="image" />
           </v-avatar>
           <span>
-            <b>{{ author.name }}</b> · {{ date }}
+            <a class="author" :href="`/users/${author._id}`"><b>{{ author.name }}</b></a> · {{ date }}
           </span>
         </v-list-item-title>
         <span class="ml-12">{{ description }}</span>
@@ -56,5 +56,9 @@ export default {
 <style scoped>
 .comment {
   padding: 5px;
+}
+
+.author {
+  text-decoration: none;
 }
 </style>
