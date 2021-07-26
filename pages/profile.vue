@@ -47,7 +47,7 @@
                   >
                     <v-list-item dense>
                       <v-list-item-content>
-                        <v-list-item-title>{{ idea }}</v-list-item-title>
+                        <v-list-item-title>{{ idea.name }}</v-list-item-title>
                       </v-list-item-content>
                     </v-list-item>
                   </v-expansion-panel-content>
