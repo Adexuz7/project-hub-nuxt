@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="space-around">
       <v-col>
-        <v-card class="mx-auto" max-width="600">
+        <v-card class="mx-auto" max-width="600" outlined>
           <v-img
             class="white--text align-end"
             height="200px"
@@ -58,7 +58,7 @@
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn text color="deep-purple accent-4" @click="logOut">
+            <v-btn text color="#FF6D00" @click="logOut">
               <span>Log out</span>
             </v-btn>
           </v-card-actions>
