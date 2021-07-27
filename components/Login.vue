@@ -68,8 +68,11 @@ export default {
     password: '',
     show: false,
     error: null,
-    snackbar: true,
+    snackbar: false,
   }),
+  mounted() {
+    this.snackbar = this.$route.query.requiresAuth
+  },
   methods: {
     async login() {
       try {

@@ -128,7 +128,7 @@ export default {
 
         this.$emit('addlike', newProject.data)
       } else {
-        this.$router.push('/login')
+        this.$router.push({path: '/login', query:{requiresAuth: true}})
       }
     },
     toGitHub() {
