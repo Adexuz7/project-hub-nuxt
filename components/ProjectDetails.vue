@@ -75,6 +75,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
+
 export default {
   props: {
     project: {
@@ -115,14 +118,21 @@ export default {
     ideas() {
       return this.project.ideas.length
     },
+    ...mapGetters(['isAuthenticated']),
+
   },
   methods: {
     async like() {
-      const newProject = await this.$axios.put(
+     if (this.isAuthenticated){
+        const newProject = await this.$axios.put(
         '/projects/likes/' + this.project._id
       )
 
       this.$emit('like', newProject.data)
+     } else {
+        this.$router.push({path: '/login', query:{requiresAuth: true}})
+
+     }
     },
     toGitHub() {
       window.open(this.project.repository)

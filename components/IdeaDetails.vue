@@ -33,7 +33,7 @@
 
       <v-row class="my-0">
         <v-col>
-          <v-chip class="border-label px-5" label outlined  @click="like">
+          <v-chip class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     idea: {
@@ -90,23 +91,27 @@ export default {
     projects() {
       return this.idea.projects.length
     },
-  },
-  methods: {
-    async like() {
-      const idea = await this.$axios.put(`/ideas/likes/${this.idea._id}`)
-      this.$emit('like', idea.data)
-    },
+    ...mapGetters(['isAuthenticated']),
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)
+  },
+  methods: {
+    async like() {
+      if (this.isAuthenticated) {
+        const idea = await this.$axios.put(`/ideas/likes/${this.idea._id}`)
+        this.$emit('like', idea.data)
+      } else {
+        this.$router.push({ path: '/login', query: { requiresAuth: true } })
+      }
+    },
   },
 }
 </script>
 
 <style scoped>
 .border-idea {
-  border-color: #FFAB00
-;
+  border-color: #ffab00;
 }
 
 .border-label {
