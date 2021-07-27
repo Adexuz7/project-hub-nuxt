@@ -1,89 +1,68 @@
 <template>
   <div>
-    <v-hover v-slot:default="{ hover }">
-      <v-carousel
-        cycle
-        :interval="3500"
-        height="200"
-        hide-delimiter-background
-        show-arrows-on-hover
+    <v-carousel
+      cycle
+      :interval="3600"
+      height="200"
+      hide-delimiters
+      show-arrows-on-hover
+    >
+      <v-carousel-item
+        v-for="(slide, i) in slides"
+        @click="redirect(slide.path)"
+        :key="i"
+        :src="slide.image"
+        class="carousel"
       >
-        <v-carousel-item
-          v-for="(slide, i) in slides"
-          :key="i"
-          :src="slide.image"
-          class="carousel"
-        >
-          <v-row class="fill-height" align="center" justify="center">
-            <div class="slide">{{ slide.description }}</div>
-          </v-row>
-          <v-fade-transition>
-            <v-overlay
-              v-if="hover"
-              absolute
-              color="#FFE0B2"
-              class="d-flex align-end"
-            >
-              <v-btn class="mb-12" @click="redirect(slide.path)"
-                >See more info</v-btn
-              >
-            </v-overlay>
-          </v-fade-transition>
-        </v-carousel-item>
-      </v-carousel>
-    </v-hover>
+        <v-row class="fill-height" align="center" justify="center">
+          <div class="slide">{{ slide.description }}</div>
+        </v-row>
+      </v-carousel-item>
+    </v-carousel>
     <v-row class="header">
       <v-col>
-        <h1>Browse into thousands ideas from +1.000.000 users</h1>
+        <h1>Browse into amazing ideas and projects</h1>
         <hr />
         <h1>Where do we start?</h1>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <v-card class="mx-auto" max-width="400">
+        <v-card class="mx-auto" max-width="400" outlined>
           <v-img
             class="white--text align-end"
             height="200px"
             src="http://edap.es/wp-content/uploads/blog9-img-01.jpg"
           >
-            <v-card-title class="card2"
-              >Create a project or browse</v-card-title
-            >
+            <v-card-title class="card2">Projects</v-card-title>
           </v-img>
 
           <v-card-text class="text--primary">
-            <div>Create a project or browse around thousands options</div>
+            <span>Explore new projects or create a new one</span>
           </v-card-text>
 
           <v-card-actions>
-            <v-spacer></v-spacer>
-            <nuxt-link to="/projects/"
-              ><v-btn color="orange" text> Exlore </v-btn></nuxt-link
-            >
-            <v-spacer></v-spacer>
+            <v-btn color="orange" to="/projects" block text>
+              Exlore projects
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col>
-        <v-card class="mx-auto" max-width="400">
+        <v-card class="mx-auto" max-width="400" outlined>
           <v-img
             class="white--text align-end"
             height="200px"
             src="https://blogs.iadb.org/conocimiento-abierto/wp-content/uploads/sites/10/2019/09/banner-siete-pasos-gestion-proyectos.jpg"
           >
-            <v-card-title class="card1">Create an idea or browse</v-card-title>
+            <v-card-title class="card1">Ideas</v-card-title>
           </v-img>
           <v-card-text class="text--primary">
-            <div>Create an idea or browse around thousands options</div>
+            <span>Explore new ideas or create a new one</span>
           </v-card-text>
 
           <v-card-actions>
-            <v-spacer></v-spacer>   
-            <nuxt-link to="/ideas/"
-              ><v-btn color="orange" text> Explore </v-btn></nuxt-link
-            >
-            <v-spacer></v-spacer>
+            <v-btn color="orange" to="/ideas" block text> Explore ideas </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -165,7 +144,7 @@ h1 {
   font-family: 'Montserrat Alternates', sans-serif;
   font-style: normal;
   font-weight: 300;
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -175,7 +154,6 @@ h1 {
 }
 
 .card2 {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
 }
-
 </style>
