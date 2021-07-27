@@ -9,10 +9,10 @@
     >
       <v-carousel-item
         v-for="(slide, i) in slides"
-        @click="redirect(slide.path)"
         :key="i"
         :src="slide.image"
         class="carousel"
+        @click="redirect(slide.path)"
       >
         <v-row class="fill-height" align="center" justify="center">
           <div class="slide">{{ slide.description }}</div>
@@ -101,14 +101,6 @@ export default {
         },
       ],
       overlay: false,
-      shortcuts: [
-        {
-          path: '/projects/',
-        },
-        {
-          path: '/ideas/',
-        },
-      ],
     }
   },
   methods: {
@@ -141,7 +133,7 @@ export default {
 h1 {
   font-size: 40px;
   color: rgb(0, 0, 0);
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 300;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
@@ -151,9 +143,11 @@ h1 {
 
 .card1 {
   background-color: rgba(0, 0, 0, 0.5);
+  font-family: 'Montserrat', sans-serif;
 }
 
 .card2 {
   background-color: rgba(0, 0, 0, 0.6);
+  font-family: 'Montserrat', sans-serif;
 }
 </style>

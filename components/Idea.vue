@@ -33,7 +33,12 @@
 
       <v-row class="my-0">
         <v-col>
-          <v-chip class="border-label px-5" label outlined  @click="addLikesIdea">
+          <v-chip
+            class="border-label px-5"
+            label
+            outlined
+            @click="addLikesIdea"
+          >
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -51,12 +56,16 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails">More details</v-btn>
+      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails"
+        >More details</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   props: {
     idea: {
@@ -104,15 +113,20 @@ export default {
     projects() {
       return this.idea.projects.length
     },
+    ...mapGetters(['isAuthenticated']),
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)
   },
   methods: {
     async addLikesIdea() {
-      const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
+      if (this.isAuthenticated) {
+        const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
 
-      this.$emit('addLikesIdea', newIdea.data)
+        this.$emit('addLikesIdea', newIdea.data)
+      } else {
+        this.$router.push('/login')
+      }
     },
     seeMoreDetails() {
       this.$router.push(`/ideas/${this.idea._id}`)
@@ -123,7 +137,7 @@ export default {
 
 <style scoped>
 .border-idea {
-  border-color: #FFAB00;
+  border-color: #ffab00;
 }
 
 .border-label {

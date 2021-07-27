@@ -50,6 +50,9 @@ export default {
 
       this.projects.splice(arr.indexOf(project._id), 1, project)
     },
+    toLogin() {
+      this.router.push('/login')
+    }
   },
 }
 </script>
