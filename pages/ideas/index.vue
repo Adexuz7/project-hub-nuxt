@@ -16,9 +16,16 @@
     <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
         <Idea
+        v-if="isAuthenticated"
           :idea="idea"
           :all-categories="categories"
           @addLikesIdea="addLikeIdea"
+        />
+        <Idea
+        v-else
+          :idea="idea"
+          :all-categories="categories"
+          @addLikesIdea="toLogin"
         />
       </v-col>
     </v-row>
@@ -48,6 +55,9 @@ export default {
 
       this.ideas.splice(arr.indexOf(idea._id), 1, idea)
     },
+    toLogin(){
+      this.rooter.push('/login')
+    }
   },
 }
 </script>
@@ -56,7 +66,7 @@ export default {
 h1 {
   display: flex;
   justify-content: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Satisfy', 'Montserrat Alternates', sans-serif;
   letter-spacing: 10px;
 }
 </style>

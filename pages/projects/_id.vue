@@ -49,11 +49,13 @@
     <v-row>
       <v-col>
         <v-card v-if="project.ideas.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(idea, index) in project.ideas" :key="index">
-            <v-list-item-content>
-              <v-list-item-title> {{ idea }} </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <div v-for="(idea, index) in project.ideas" :key="index">
+            <v-list-item :to="`/ideas/${idea._id}`">
+              <v-list-item-content>
+                <v-list-item-title> {{ idea.name }} </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </div>
         </v-card>
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
@@ -97,7 +99,7 @@
     <v-row>
       <v-col>
         <v-card v-if="project.comments.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(comment, index) in project.comments" :key="index">
+          <v-list-item v-for="(comment, index) in comments" :key="index">
             <!-- <v-list-item-content>
               <v-list-item-title>Single-line item</v-list-item-title>
             </v-list-item-content> -->
@@ -133,6 +135,9 @@ export default {
   }),
   computed: {
     ...mapGetters(['loggedInUser']),
+    comments() {
+      return this.project.comments.slice().reverse()
+    },
   },
   methods: {
     async refresh() {
@@ -142,7 +147,7 @@ export default {
       try {
         await this.$axios.post(`/projects/${this.id}/comments`, {
           comment: this.comment,
-          author: this.loggedInUser.id
+          author: this.loggedInUser.id,
         })
 
         this.project = await this.$axios.$get(`/projects/${this.id}`)
@@ -151,7 +156,7 @@ export default {
       }
 
       this.comment = null
-    }
+    },
   },
 }
 </script>

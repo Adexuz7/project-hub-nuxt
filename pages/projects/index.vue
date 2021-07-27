@@ -3,8 +3,15 @@
     <v-row>
       <v-col>
         <h1>Explore projects</h1>
-        <hr>
+        <hr />
       </v-col>
+    </v-row>
+    <v-row>
+      <NewProject
+        v-if="isAuthenticated"
+        :select-categories="categories"
+        @projectCreated="getProjects"
+      />
     </v-row>
     <!-- <v-row>
       <v-col>
@@ -14,7 +21,7 @@
     <v-row>
       <v-col v-for="(project, index) in projects" :key="index">
         <!-- <Project :project="project" @addlike="getProjects" /> -->
-        <Project :project="project" @addlike="addLike"/>
+        <Project :project="project" @addlike="addLike" />
       </v-col>
     </v-row>
   </v-container>
@@ -28,6 +35,7 @@ export default {
   async asyncData({ $axios }) {
     return {
       projects: await $axios.$get('/projects'),
+      categories: await $axios.$get('/categories'),
     }
   },
   computed: {
@@ -38,9 +46,12 @@ export default {
       this.projects = await this.$axios.$get('/projects')
     },
     addLike(project) {
-      const arr = this.projects.map(project => project._id)
+      const arr = this.projects.map((project) => project._id)
 
       this.projects.splice(arr.indexOf(project._id), 1, project)
+    },
+    toLogin() {
+      this.router.push('/login')
     }
   },
 }
