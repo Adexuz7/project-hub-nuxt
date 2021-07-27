@@ -95,7 +95,6 @@ export default {
     },
   }),
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
     liked() {
       if (this.isAuthenticated)
         return this.idea.likes.includes(this.loggedInUser._id)
@@ -131,6 +130,7 @@ export default {
     projects() {
       return this.idea.projects.length
     },
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)

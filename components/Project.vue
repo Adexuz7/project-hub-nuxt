@@ -52,7 +52,18 @@
 
       <v-row class="my-0">
         <v-col>
-          <v-chip class="border-label px-5" label outlined @click="like">
+          <v-chip
+            v-if="liked"
+            class="border-label px-5"
+            color="#FF6D00"
+            label
+            outlined
+            @click="like"
+          >
+            <v-icon small left> mdi-thumb-up </v-icon>
+            <span class="ml-1"> {{ likes }} </span>
+          </v-chip>
+          <v-chip v-else class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -92,6 +103,11 @@ export default {
     },
   },
   computed: {
+    liked() {
+      if (this.isAuthenticated)
+        return this.project.likes.includes(this.loggedInUser._id)
+      return false
+    },
     date() {
       return new Date(this.project.date).toDateString()
     },
@@ -117,7 +133,7 @@ export default {
     ideas() {
       return this.project.ideas.length
     },
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   methods: {
     async like() {
@@ -128,7 +144,7 @@ export default {
 
         this.$emit('addlike', newProject.data)
       } else {
-        this.$router.push({path: '/login', query:{requiresAuth: true}})
+        this.$router.push({ path: '/login', query: { requiresAuth: true } })
       }
     },
     toGitHub() {

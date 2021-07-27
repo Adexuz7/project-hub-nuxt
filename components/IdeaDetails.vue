@@ -44,13 +44,7 @@
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
-          <v-chip
-            v-else
-            class="border-label px-5"
-            label
-            outlined
-            @click="like"
-          >
+          <v-chip v-else class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -86,7 +80,6 @@ export default {
     author: 'Unknown',
   }),
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser']),
     liked() {
       if (this.isAuthenticated)
         return this.idea.likes.includes(this.loggedInUser._id)
@@ -115,7 +108,7 @@ export default {
     projects() {
       return this.idea.projects.length
     },
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)
