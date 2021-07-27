@@ -34,10 +34,22 @@
       <v-row class="my-0">
         <v-col>
           <v-chip
+            v-if="liked"
+            class="border-label px-5"
+            color="#FF6D00"
+            label
+            outlined
+            @click="like"
+          >
+            <v-icon small left> mdi-thumb-up </v-icon>
+            <span class="ml-1"> {{ likes }} </span>
+          </v-chip>
+          <v-chip
+            v-else
             class="border-label px-5"
             label
             outlined
-            @click="addLikesIdea"
+            @click="like"
           >
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
@@ -83,6 +95,12 @@ export default {
     },
   }),
   computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
+    liked() {
+      if (this.isAuthenticated)
+        return this.idea.likes.includes(this.loggedInUser._id)
+      return false
+    },
     date() {
       return new Date(this.idea.date).toDateString()
     },
@@ -113,13 +131,12 @@ export default {
     projects() {
       return this.idea.projects.length
     },
-    ...mapGetters(['isAuthenticated']),
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)
   },
   methods: {
-    async addLikesIdea() {
+    async like() {
       if (this.isAuthenticated) {
         const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
 
