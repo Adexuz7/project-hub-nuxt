@@ -6,7 +6,7 @@
           <v-expansion-panel>
             <v-expansion-panel-header> Add Team </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-form v-model="valid">
+              <v-form>
                 <v-container>
                   <v-row>
                     <v-col>
@@ -59,12 +59,16 @@
 <script>
 export default {
   data: () => ({
-    valid: false,
     teamName: '',
     nameRules: [(v) => !!v || 'Name is required'],
     description: '',
     members: [],
   }),
+  computed:{
+    valid(){
+      return(this.teamName !== '' && this.description !== '')
+    }
+  },
   methods: {
     async submit() {
       await this.$axios.post('/teams', {
