@@ -142,7 +142,7 @@ export default {
 
         this.$emit('addLikesIdea', newIdea.data)
       } else {
-        this.$router.push('/login')
+        this.$router.push({path: '/login', query:{requiresAuth: true}})
       }
     },
     seeMoreDetails() {
