@@ -164,7 +164,7 @@ export default {
 h1 {
   font-size: 40px;
   color: rgb(0, 0, 0);
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 300;
   text-shadow: 1px 1px 2px black;
