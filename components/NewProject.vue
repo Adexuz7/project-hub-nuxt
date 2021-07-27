@@ -5,7 +5,7 @@
         <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header>
-              <span>Create a new project (unfinished)</span>
+              <span>Create a new project</span>
             </v-expansion-panel-header>
             <v-expansion-panel-content>
               <v-container>
@@ -34,14 +34,9 @@
                       outlined
                       dense
                     ></v-select>
-                    <v-select
-                      v-model="difficulty"
-                      :items="selectDifficulty"
-                      label="Difficulty"
-                      outlined
-                      dense
-                    ></v-select>
-                    <v-btn block color="primary" @click="newProject" :disabled="enableBtn"> New idea </v-btn>
+                    <v-btn block color="primary" @click="newProject">
+                      New project
+                    </v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -62,27 +57,20 @@ export default {
     },
   },
   data: () => ({
+    valid: true,
     name: '',
     description: '',
     categories: [],
-    difficulty: '',
-    selectDifficulty: ['Easy', 'Medium', 'Difficult'],
     open: false,
   }),
-  computed: {
-    enableBtn() {
-      return !(this.name !== '' && this.description !== '' && this.difficulty !== '' && this.categories.length !== 0)
-    }
-  },
   methods: {
     async newProject() {
-      const project = await this.$axios.$post('/projects', {
+      await this.$axios.$post('/projects', {
         name: this.name,
         description: this.description,
         categories: this.categories,
-        difficulty: this.difficulty,
       })
-      console.log(project)
+
       this.open = false
       this.$emit('projectCreated')
     },

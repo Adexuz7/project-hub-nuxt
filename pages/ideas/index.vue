@@ -53,14 +53,10 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
-
 h1 {
   display: flex;
   justify-content: center;
-  font-family: 'Satisfy', 'Montserrat Alternates', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   letter-spacing: 10px;
 }
 </style>
-
-  /* text-shadow: 1px 1px 2px black; */

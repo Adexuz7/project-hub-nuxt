@@ -49,7 +49,7 @@
         <v-icon>mdi-account</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main class="bg">
+    <v-main>
       <v-container>
         <Nuxt />
       </v-container>
@@ -110,9 +110,5 @@ export default {
   font-family: 'Montserrat', sans-serif !important;
   font-weight: bold;
   text-decoration: none;
-}
-
-.bg {
-  background-color: white;
 }
 </style>
