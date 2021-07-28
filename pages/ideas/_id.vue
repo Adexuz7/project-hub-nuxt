@@ -192,3 +192,13 @@ export default {
   },
 }
 </script>
+
+<style>
+h1 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+</style>
