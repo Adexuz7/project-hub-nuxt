@@ -60,7 +60,7 @@
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title> No ideas yet </v-list-item-title>
+              <v-list-item-title> No ideas </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
@@ -109,7 +109,7 @@
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title> No comments yet </v-list-item-title>
+              <v-list-item-title> No comments </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
