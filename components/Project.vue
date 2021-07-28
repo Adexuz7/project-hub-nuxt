@@ -4,7 +4,7 @@
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       class="align-center justify-center"
       height="150px"
-      :src="project.image"
+      :src="image"
     >
       <v-list-item two-line>
         <v-list-item-content>
@@ -52,7 +52,18 @@
 
       <v-row class="my-0">
         <v-col>
-          <v-chip class="border-label px-5" label outlined @click="like">
+          <v-chip
+            v-if="liked"
+            class="border-label px-5"
+            color="#FF6D00"
+            label
+            outlined
+            @click="like"
+          >
+            <v-icon small left> mdi-thumb-up </v-icon>
+            <span class="ml-1"> {{ likes }} </span>
+          </v-chip>
+          <v-chip v-else class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -85,6 +96,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'Project',
   props: {
     project: {
       type: Object,
@@ -92,6 +104,11 @@ export default {
     },
   },
   computed: {
+    image() {
+      return (
+        this.project.image || 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib'
+      )
+    },
     date() {
       return new Date(this.project.date).toDateString()
     },
@@ -103,7 +120,12 @@ export default {
       }
     },
     categories() {
-      return this.project.categories.join(', ')
+      return this.project.categories.map((e) => e.name).join(', ')
+    },
+    liked() {
+      if (this.isAuthenticated)
+        return this.project.likes.includes(this.loggedInUser._id)
+      return false
     },
     likes() {
       return this.project.likes.length
@@ -117,7 +139,7 @@ export default {
     ideas() {
       return this.project.ideas.length
     },
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   methods: {
     async like() {
@@ -128,7 +150,7 @@ export default {
 
         this.$emit('addlike', newProject.data)
       } else {
-        this.$router.push({path: '/login', query:{requiresAuth: true}})
+        this.$router.push({ path: '/login', query: { requiresAuth: true } })
       }
     },
     toGitHub() {

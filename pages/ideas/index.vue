@@ -63,6 +63,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 h1 {
   display: flex;
   justify-content: center;

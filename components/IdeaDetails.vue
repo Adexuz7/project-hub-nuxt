@@ -33,7 +33,18 @@
 
       <v-row class="my-0">
         <v-col>
-          <v-chip class="border-label px-5" label outlined @click="like">
+          <v-chip
+            v-if="liked"
+            class="border-label px-5"
+            color="#FF6D00"
+            label
+            outlined
+            @click="like"
+          >
+            <v-icon small left> mdi-thumb-up </v-icon>
+            <span class="ml-1"> {{ likes }} </span>
+          </v-chip>
+          <v-chip v-else class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -53,6 +64,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+
 export default {
   props: {
     idea: {
@@ -68,6 +80,11 @@ export default {
     author: 'Unknown',
   }),
   computed: {
+    liked() {
+      if (this.isAuthenticated)
+        return this.idea.likes.includes(this.loggedInUser._id)
+      return false
+    },
     date() {
       return new Date(this.idea.date).toDateString()
     },
@@ -91,7 +108,7 @@ export default {
     projects() {
       return this.idea.projects.length
     },
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   async mounted() {
     this.author = await this.$axios.$get(`/users/${this.idea.author}`)

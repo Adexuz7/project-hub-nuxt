@@ -17,12 +17,45 @@
 
     <v-row>
       <v-col>
-        <h4>Projects</h4>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
+        <v-card>
+          <v-card-title>Projects</v-card-title>
+          <v-card-text>
+             <v-btn block outlined @click="openModal">Add project</v-btn>
+        <v-overlay :dark="false" :value="overlay">
+          <v-form>
+            <v-card>
+              <v-card-text>
+                <v-btn class="mb-4" color="error" block outlined @click="closeModal">x</v-btn>
+                <v-text-field
+                      v-model="name"
+                      label="Name"
+                      outlined
+                      dense
+                    ></v-text-field>
+                    <v-textarea
+                      v-model="description"
+                      label="Description"
+                      no-resize
+                      outlined
+                      dense
+                    ></v-textarea>
+                    <v-select
+                      v-model="projectCategories"
+                      :items="categories"
+                      label="Category"
+                      item-value="id"
+                      item-text="name"
+                      return-object
+                      outlined
+                      dense
+                    ></v-select>
+                    <v-btn block color="primary" @click="newProject">
+                      New project
+                    </v-btn>
+              </v-card-text>
+            </v-card>
+          </v-form>
+        </v-overlay>
         <v-card v-if="idea.projects.length > 0" class="mx-auto" outlined>
           <div v-for="(project, index) in idea.projects" :key="index">
             <v-list-item :to="`/projects/${project._id}`">
@@ -35,12 +68,20 @@
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title> No projects yet </v-list-item-title>
+              <v-list-item-title> No projects </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
+
+    <!-- <v-row>
+      <v-col>
+
+      </v-col>
+    </v-row> -->
 
     <v-row>
       <v-col>
@@ -81,7 +122,7 @@
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title> No comments yet </v-list-item-title>
+              <v-list-item-title> No comments </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
@@ -104,6 +145,10 @@ export default {
   },
   data: () => ({
     comment: null,
+    overlay: false,
+    name: '',
+    description: '',
+    projectCategories: [],
   }),
   computed: {
     ...mapGetters(['loggedInUser']),
@@ -112,6 +157,12 @@ export default {
     },
   },
   methods: {
+    openModal() {
+      this.overlay = true
+    },
+    closeModal() {
+      this.overlay = false
+    },
     async refresh() {
       this.idea = await this.$axios.$get(`/ideas/${this.id}`)
     },
@@ -127,6 +178,16 @@ export default {
       }
 
       this.comment = null
+    },
+    async newProject() {
+      await this.$axios.$post(`/ideas/${this.id}/projects`, {
+        name: this.name,
+        description: this.description,
+        categories: this.categories,
+      })
+
+      this.overlay = false
+      this.idea = await this.$axios.$get(`/ideas/${this.id}`)
     },
   },
 }

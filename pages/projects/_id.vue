@@ -40,15 +40,15 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="project.ideas.length > 0">
       <v-col>
         <h4>Ideas</h4>
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="project.ideas.length > 0">
       <v-col>
-        <v-card v-if="project.ideas.length > 0" class="mx-auto" outlined>
+        <v-card class="mx-auto" outlined>
           <div v-for="(idea, index) in project.ideas" :key="index">
             <v-list-item :to="`/ideas/${idea._id}`">
               <v-list-item-content>
@@ -56,13 +56,6 @@
               </v-list-item-content>
             </v-list-item>
           </div>
-        </v-card>
-        <v-card v-else class="mx-auto" outlined>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title> No ideas yet </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
         </v-card>
       </v-col>
     </v-row>
@@ -109,7 +102,7 @@
         <v-card v-else class="mx-auto" outlined>
           <v-list-item>
             <v-list-item-content>
-              <v-list-item-title> No comments yet </v-list-item-title>
+              <v-list-item-title> No comments </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>
