@@ -17,16 +17,16 @@
 
     <v-row>
       <v-col>
-        <h4>Members</h4>
+        <h4>Teams</h4>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
         <v-card v-if="project.team.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(member, index) in project.team" :key="index">
+          <v-list-item v-for="(team, index) in project.team" :key="index">
             <v-list-item-content>
-              <v-list-item-title> {{ member }} </v-list-item-title>
+              <v-list-item-title> {{ team.name }} </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-card>

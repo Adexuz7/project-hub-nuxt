@@ -10,6 +10,7 @@
       <NewProject
         v-if="isAuthenticated"
         :select-categories="categories"
+        :select-teams="teams"
         @projectCreated="getProjects"
       />
     </v-row>
@@ -36,6 +37,7 @@ export default {
     return {
       projects: await $axios.$get('/projects'),
       categories: await $axios.$get('/categories'),
+      teams: await $axios.$get('/teams/all')
     }
   },
   computed: {

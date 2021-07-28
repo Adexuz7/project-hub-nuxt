@@ -28,7 +28,15 @@
                       v-model="categories"
                       :items="selectCategories"
                       label="Category"
-                      item-value="id"
+                      item-text="name"
+                      return-object
+                      outlined
+                      dense
+                    ></v-select>
+                    <v-select
+                      v-model="team"
+                      :items="selectTeams"
+                      label="Team"
                       item-text="name"
                       return-object
                       outlined
@@ -55,20 +63,29 @@ export default {
       type: Array,
       default: null,
     },
+    selectTeams: {
+      type: Array,
+      default: null,
+    },
   },
   data: () => ({
     valid: true,
-    name: '',
-    description: '',
+    name: null,
+    description: null,
     categories: [],
+    team: null,
     open: false,
   }),
   methods: {
     async newProject() {
-      await this.$axios.$post('/projects', {
+      const newProject = await this.$axios.$post('/projects', {
         name: this.name,
         description: this.description,
         categories: this.categories,
+      })
+
+      await this.$axios.$put(`/projects/${newProject._id}`, {
+        team: this.team
       })
 
       this.open = false
