@@ -96,6 +96,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'Project',
   props: {
     project: {
       type: Object,

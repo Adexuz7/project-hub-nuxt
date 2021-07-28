@@ -62,22 +62,20 @@ export default {
     teamName: '',
     nameRules: [(v) => !!v || 'Name is required'],
     description: '',
-    members: [],
   }),
-  computed:{
-    valid(){
-      return(this.teamName !== '' && this.description !== '')
-    }
+  computed: {
+    valid() {
+      return (this.teamName !== '' && this.description !== '')
+    },
   },
   methods: {
     async submit() {
-      await this.$axios.post('/teams', {
+      const newTeam = await this.$axios.post('/teams', {
         name: this.teamName,
         description: this.description,
-        members: this.members,
-        projects: [],
-        messages: [],
       })
+
+      this.$root.$emit('team-created', newTeam.data)
     },
   },
 }
