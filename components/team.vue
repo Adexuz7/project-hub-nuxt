@@ -1,10 +1,11 @@
 <template>
   <div>
-    <v-card class="border-project mx-auto my-5" width="360" outlined>
+    <v-card class="border-project mx-auto my-5" width="360" height="360" outlined>
       <v-img
         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
         class="align-center justify-center"
         height="150px"
+        :src="image"
       >
         <v-list-item two-line>
           <v-list-item-content>
@@ -69,13 +70,21 @@ export default {
   data() {
     return {
       overlay: false,
-      username: ''
+      username: '',
     }
   },
   props: {
     team: {
       type: Object,
       default: null,
+    },
+  },
+  computed: {
+    image() {
+      return (
+        this.team.image ||
+        'https://media.istockphoto.com/photos/software-developing-team-working-in-the-office-picture-id996082438?k=6&m=996082438&s=612x612&w=0&h=NgeMJY2DdiaC-o2ZQhxCsFy9XRG9DlMf2PwL5_PhHnw='
+      )
     },
   },
   methods: {

@@ -1,17 +1,13 @@
 <template>
   <v-container>
-    <v-col>
-      <v-row>
-        <teamCreation v-if="isAuthenticated"></teamCreation>
-      </v-row>
-    </v-col>
-    <v-col>
-      <v-row>
-        <v-col v-for="(team,index) in myTeams" :key="index">
-          <team :team="team"></team>
-        </v-col>
-      </v-row>
-    </v-col>
+    <v-row>
+      <teamCreation v-if="isAuthenticated"></teamCreation>
+    </v-row>
+    <v-row>
+      <v-col v-for="(team, index) in myTeams" :key="index">
+        <team :team="team"></team>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -38,6 +34,6 @@ export default {
     this.$root.$on('member-added', async () => {
       this.myTeams = await this.$axios.$get('/teams')
     })
-  }
+  },
 }
 </script>
