@@ -8,7 +8,9 @@
     <v-row>
       <v-col>
         <span>Already registered?</span>
-        <v-btn x-small outlined rounded color="secondary" nuxt to="/login">Log in</v-btn>
+        <v-btn x-small outlined rounded color="secondary" nuxt to="/login"
+          >Log in</v-btn
+        >
       </v-col>
     </v-row>
     <v-row>
@@ -44,7 +46,7 @@
               dense
             ></v-text-field>
           </v-list-item>
-
+            {{specialty}}
           <v-list-item>
             <v-text-field
               v-model="password"
@@ -56,6 +58,19 @@
               @click:append="show = !show"
               @keyup.enter="signup"
             ></v-text-field>
+          </v-list-item>
+
+          <v-list-item>
+            <v-select
+            v-model="specialty"
+            :items="specialties"
+            label="Specialty"
+            outlined
+            dense
+
+            >
+
+            </v-select>
           </v-list-item>
 
           <v-card-actions>
@@ -75,6 +90,8 @@ export default {
     username: '',
     email: '',
     password: '',
+    specialty:'',
+    specialties:['Front-end', 'Back-end', 'Graphic design'],
     show: false,
     error: null,
   }),
@@ -86,6 +103,7 @@ export default {
           userName: this.username,
           email: this.email,
           password: this.password,
+          specialty: this.specialty.toLowerCase()
         })
 
         await this.$auth.loginWith('local', {

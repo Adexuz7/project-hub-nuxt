@@ -57,11 +57,11 @@
           <v-card-text>
             <v-row class="mb-3">
               <v-col>
-                <v-btn @click="closeModal" color="error" outlined block>X</v-btn>
+                <v-btn color="error" outlined block @click="closeModal">X</v-btn>
               </v-col>
             </v-row>
             <v-text-field label="Member username" v-model="username" outlined dense></v-text-field>
-            <v-btn @click="addNewMember(team._id)" color="primary" outlined block>Add Member</v-btn>
+            <v-btn color="primary" outlined block @click="addNewMember(team._id)">Add Member</v-btn>
           </v-card-text>
         </v-card>
       </v-form>
