@@ -70,10 +70,12 @@ export default {
   },
   methods: {
     async submit() {
-      await this.$axios.post('/teams', {
+      const newTeam = await this.$axios.post('/teams', {
         name: this.teamName,
         description: this.description,
       })
+
+      this.$root.$emit('team-created', newTeam.data)
     },
   },
 }

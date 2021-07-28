@@ -1,68 +1,92 @@
 <template>
-  <v-container>
-    <v-row justify="space-around">
-      <v-card width="400" height="600">
-        <v-img
-          height="200px"
-          src="https://steamuserimages-a.akamaihd.net/ugc/99473989857590016/F8DBF4DAFCD7A536377BC48764242B4FBEFBC7C6/?imw=512&imh=454&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
-        >
-          <v-app-bar flat color="rgba(0, 0, 0, 0)">
-            <v-app-bar-nav-icon color="white"></v-app-bar-nav-icon>
+  <div>
+    <v-card class="border-project mx-auto my-5" width="360" outlined>
+      <v-img
+        gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+        class="align-center justify-center"
+        height="150px"
+      >
+        <v-list-item two-line>
+          <v-list-item-content>
+            <v-list-item-title class="white--text text-h5">
+              <span>
+                <b>{{ team.name }}</b>
+              </span>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-img>
 
-            <v-toolbar-title class="text-h6 white--text pl-0">
-              Messages
-            </v-toolbar-title>
+      <v-card-text>
+        <v-row align="center">
+          <v-col>
+            <span class="description">
+              <b>{{ team.description }}</b>
+            </span>
+          </v-col>
+        </v-row>
 
-            <v-spacer></v-spacer>
-
-            <v-btn color="white" icon>
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </v-app-bar>
-
-          <v-card-title class="white--text mt-8">
-            <v-avatar size="56">
-              <img
-                alt="user"
-                src="https://pbs.twimg.com/media/Dweca4yU0AAYZUv?format=jpg&name=small"
-              />
-            </v-avatar>
-            <p class="ml-3">
-              {{ userTeams }}
-            </p>
-          </v-card-title>
-        </v-img>
-
-        <v-card-text>
-          <div class="font-weight-bold ml-8 mb-2">Today</div>
-
-          <v-timeline align-top dense>
-            <v-timeline-item
-              v-for="message in messages"
-              :key="message.time"
-              :color="message.color"
-              small
+        <v-row>
+          <v-col>
+            <v-chip
+              v-for="(member, idx) in team.members"
+              :key="idx"
+              class="border-label px-5 mx-1"
+              :input-value="false"
+              label
+              outlined
             >
-              <div>
-                <div class="font-weight-normal"></div>
-              </div>
-            </v-timeline-item>
-          </v-timeline>
-        </v-card-text>
-      </v-card>
-    </v-row>
-  </v-container>
+              <v-icon small left> mdi-account </v-icon>
+              <span class="ml-1"> {{ member.name }} </span>
+            </v-chip>
+          </v-col>
+        </v-row>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn class="mr-1" color="#FF6D00" text @click="openModal()"
+          >Add Member</v-btn
+        >
+      </v-card-actions>
+    </v-card>
+    <v-overlay :value="overlay">
+      <v-form>
+        <v-card>
+          <v-card-text>
+            <v-text-field label="Member username" v-model="username">
+            </v-text-field>
+            <v-btn @click="addNewMember(team._id)">Add Member</v-btn>
+          </v-card-text>
+        </v-card>
+      </v-form>
+    </v-overlay>
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      overlay: false,
+      username: ''
+    }
+  },
   props: {
     team: {
       type: Object,
       default: null,
     },
   },
+  methods: {
+    openModal() {
+      this.overlay = true
+    },
+    async addNewMember(teamId) {
+      await this.$axios.$put(`/teams/${teamId}/users/${this.username}`)
+      this.overlay = false
+      this.$root.$emit('member-added')
+    },
+  },
 }
 </script>
-
-

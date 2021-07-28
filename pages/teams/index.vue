@@ -5,9 +5,11 @@
         <teamCreation v-if="isAuthenticated"></teamCreation>
       </v-row>
     </v-col>
-    <v-col v-for="(team,index) in myTeams" :key="index">
+    <v-col>
       <v-row>
-        <team :team="team"></team>
+        <v-col v-for="(team,index) in myTeams" :key="index">
+          <team :team="team"></team>
+        </v-col>
       </v-row>
     </v-col>
   </v-container>
@@ -22,16 +24,20 @@ export default {
   computed: {
     ...mapGetters(['isAuthenticated']),
   },
-  async asyncdata({ $axios }) {
+  async asyncData({ $axios }) {
     return {
-      allTeams: await $axios.$get('/teams'),
-      myTeams: await $axios.$get('/users/myteams'),
+      myTeams: await $axios.$get('/teams'),
+      // myTeams: await $axios.$get('/users/myteams'),
     }
   },
-  methods: {
-    async myTeams() {
-      this.myTeams = await this.$axios.$get('/users/myteams')
-    },
-  },
+  created() {
+    this.$root.$on('team-created', (newTeam) => {
+      this.myTeams.push(newTeam)
+    })
+
+    this.$root.$on('member-added', async () => {
+      this.myTeams = await this.$axios.$get('/teams')
+    })
+  }
 }
 </script>
