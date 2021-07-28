@@ -119,7 +119,7 @@ export default {
       }
     },
     categories() {
-      return this.project.categories.join(', ')
+      return this.project.categories.map(e => e.name).join(", ")
     },
     likes() {
       return this.project.likes.length
