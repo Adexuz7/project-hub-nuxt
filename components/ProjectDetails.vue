@@ -3,8 +3,8 @@
     <v-img
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       class="align-center justify-center"
-      height="150px"
-      :src="project.image"
+      height="200px"
+      :src="image"
     >
       <v-list-item two-line>
         <v-list-item-content>
@@ -103,10 +103,11 @@ export default {
     author: 'Unknown',
   }),
   computed: {
-    liked() {
-      if (this.isAuthenticated)
-        return this.project.likes.includes(this.loggedInUser._id)
-      return false
+    image() {
+      return (
+        this.project.image ||
+        'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib'
+      )
     },
     date() {
       return new Date(this.project.date).toDateString()
@@ -119,7 +120,12 @@ export default {
       }
     },
     categories() {
-      return this.project.categories.map(e => e.name).join(", ")
+      return this.project.categories.map((e) => e.name).join(', ')
+    },
+    liked() {
+      if (this.isAuthenticated)
+        return this.project.likes.includes(this.loggedInUser._id)
+      return false
     },
     likes() {
       return this.project.likes.length
