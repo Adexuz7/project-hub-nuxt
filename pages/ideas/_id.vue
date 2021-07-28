@@ -24,7 +24,7 @@
     <v-row>
       <v-col>
         <v-btn block outlined @click="openModal">Add project</v-btn>
-        <v-overlay :value="overlay">
+        <v-overlay :dark="false" :value="overlay">
           <v-form>
             <v-card>
               <v-card-text>

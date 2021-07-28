@@ -51,7 +51,7 @@
         >
       </v-card-actions>
     </v-card>
-    <v-overlay :value="overlay">
+    <v-overlay :value="overlay" :dark="false">
       <v-form>
         <v-card>
           <v-card-text>
