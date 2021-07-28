@@ -66,7 +66,7 @@ export default {
 h1 {
   display: flex;
   justify-content: center;
-  font-family: 'Satisfy', 'Montserrat Alternates', sans-serif;
+  font-family:'Montserrat', sans-serif;
   letter-spacing: 10px;
 }
 </style>
