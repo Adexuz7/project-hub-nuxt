@@ -55,9 +55,13 @@
       <v-form>
         <v-card>
           <v-card-text>
-            <v-text-field label="Member username" v-model="username">
-            </v-text-field>
-            <v-btn @click="addNewMember(team._id)">Add Member</v-btn>
+            <v-row class="mb-3">
+              <v-col>
+                <v-btn @click="closeModal" color="error" outlined block>X</v-btn>
+              </v-col>
+            </v-row>
+            <v-text-field label="Member username" v-model="username" outlined dense></v-text-field>
+            <v-btn @click="addNewMember(team._id)" color="primary" outlined block>Add Member</v-btn>
           </v-card-text>
         </v-card>
       </v-form>
@@ -90,6 +94,9 @@ export default {
   methods: {
     openModal() {
       this.overlay = true
+    },
+    closeModal() {
+      this.overlay = false
     },
     async addNewMember(teamId) {
       await this.$axios.$put(`/teams/${teamId}/users/${this.username}`)

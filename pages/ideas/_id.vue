@@ -17,13 +17,10 @@
 
     <v-row>
       <v-col>
-        <h4>Projects</h4>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <v-btn block outlined @click="openModal">Add project</v-btn>
+        <v-card>
+          <v-card-title>Projects</v-card-title>
+          <v-card-text>
+             <v-btn block outlined @click="openModal">Add project</v-btn>
         <v-overlay :dark="false" :value="overlay">
           <v-form>
             <v-card>
@@ -59,11 +56,6 @@
             </v-card>
           </v-form>
         </v-overlay>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
         <v-card v-if="idea.projects.length > 0" class="mx-auto" outlined>
           <div v-for="(project, index) in idea.projects" :key="index">
             <v-list-item :to="`/projects/${project._id}`">
@@ -80,8 +72,16 @@
             </v-list-item-content>
           </v-list-item>
         </v-card>
+          </v-card-text>
+        </v-card>
       </v-col>
     </v-row>
+
+    <!-- <v-row>
+      <v-col>
+
+      </v-col>
+    </v-row> -->
 
     <v-row>
       <v-col>
