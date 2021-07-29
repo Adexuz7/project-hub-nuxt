@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-expansion-panels>
+        <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header>
               <span>Create a new idea</span>
@@ -42,9 +42,13 @@
                       dense
                     ></v-select>
                     <v-btn
-                    :disabled="!valid"
-                    block color="primary"
-                    @click="newIdea"> New idea </v-btn>
+                      :disabled="!valid"
+                      block
+                      color="primary"
+                      @click="newIdea"
+                    >
+                      New idea
+                    </v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -85,11 +89,19 @@ export default {
       this.open = false
       this.$emit('ideaCreated')
     },
+    reset() {
+      this.$refs.form.reset()
+    },
   },
   computed: {
-    valid(){
-      return(this.name !== '' && this.description !== '' && this.categories !== Object && this.difficulty !== '')
-    }
-  }
+    valid() {
+      return (
+        this.name !== '' &&
+        this.description !== '' &&
+        this.categories !== Object &&
+        this.difficulty !== ''
+      )
+    },
+  },
 }
 </script>

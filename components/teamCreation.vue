@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-expansion-panels>
+        <v-expansion-panels v-model="open">
           <v-expansion-panel>
             <v-expansion-panel-header> Add Team </v-expansion-panel-header>
             <v-expansion-panel-content>
@@ -62,6 +62,7 @@ export default {
     teamName: '',
     nameRules: [(v) => !!v || 'Name is required'],
     description: '',
+    open: false,
   }),
   computed: {
     valid() {
@@ -74,7 +75,7 @@ export default {
         name: this.teamName,
         description: this.description,
       })
-
+      this.open = false
       this.$root.$emit('team-created', newTeam.data)
     },
   },

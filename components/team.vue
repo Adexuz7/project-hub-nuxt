@@ -1,6 +1,12 @@
 <template>
   <div>
-    <v-card class="border-project mx-auto my-5" width="360" height="360" outlined>
+
+    <v-card
+      class="border-project mx-auto my-5"
+      width="360"
+      height="360"
+      outlined
+    >
       <v-img
         gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
         class="align-center justify-center"
@@ -21,9 +27,7 @@
       <v-card-text>
         <v-row align="center">
           <v-col>
-            <span class="description">
-              <b>{{ team.description }}</b>
-            </span>
+            <span class="description">{{team.description}} </span>
           </v-col>
         </v-row>
 
@@ -57,11 +61,35 @@
           <v-card-text>
             <v-row class="mb-3">
               <v-col>
-                <v-btn color="error" outlined block @click="closeModal">X</v-btn>
+                <v-btn color="error" outlined block @click="closeModal"
+                  >X</v-btn
+                >
               </v-col>
             </v-row>
-            <v-text-field label="Member username" v-model="username" outlined dense></v-text-field>
-            <v-btn color="primary" outlined block @click="addNewMember(team._id)">Add Member</v-btn>
+            <v-text-field
+              label="Member username"
+              v-model="username"
+              @keyup="getUsers"
+              outlined
+              dense
+            ></v-text-field>
+
+            <v-list v-if="this.users.length > 0">
+              <v-list-item
+                v-for="(user, idx) in users"
+                :key="idx"
+                @click="selectUser"
+                >{{ user.userName }}</v-list-item
+              >
+            </v-list>
+
+            <v-btn
+              color="primary"
+              outlined
+              block
+              @click="addNewMember(team._id)"
+              >Add Member</v-btn
+            >
           </v-card-text>
         </v-card>
       </v-form>
@@ -75,6 +103,7 @@ export default {
     return {
       overlay: false,
       username: '',
+      users: [],
     }
   },
   props: {
@@ -98,10 +127,17 @@ export default {
     closeModal() {
       this.overlay = false
     },
+    async getUsers() {
+      this.users = await this.$axios.$get(`/users/query?input=${this.username}`)
+      console.log('holowos', this.users)
+    },
     async addNewMember(teamId) {
       await this.$axios.$put(`/teams/${teamId}/users/${this.username}`)
       this.overlay = false
       this.$root.$emit('member-added')
+    },
+    selectUser(e) {
+      this.username = e.target.innerText
     },
   },
 }
