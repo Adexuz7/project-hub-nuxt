@@ -15,96 +15,112 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="project.team.length > 0">
       <v-col>
-        <h4>Teams</h4>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <v-card v-if="project.team.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(team, index) in project.team" :key="index">
-            <v-list-item-content>
-              <v-list-item-title> {{ team.name }} </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-card>
-        <v-card v-else class="mx-auto" outlined>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title> No members </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+        <v-card outlined>
+          <v-card-title>Teams</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col>
+                <v-card v-if="project.team.length > 0" class="mx-auto" outlined>
+                  <v-list-item
+                    v-for="(team, index) in project.team"
+                    :key="index"
+                  >
+                    <v-list-item-content>
+                      <v-list-item-title> {{ team.name }} </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+                <v-card v-else class="mx-auto" outlined>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title> No teams </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
 
     <v-row v-if="project.ideas.length > 0">
       <v-col>
-        <h4>Ideas</h4>
-      </v-col>
-    </v-row>
-
-    <v-row v-if="project.ideas.length > 0">
-      <v-col>
-        <v-card class="mx-auto" outlined>
-          <div v-for="(idea, index) in project.ideas" :key="index">
-            <v-list-item :to="`/ideas/${idea._id}`">
-              <v-list-item-content>
-                <v-list-item-title> {{ idea.name }} </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </div>
+        <v-card outlined>
+          <v-card-title>Ideas</v-card-title>
+          <v-card-text>
+            <v-row v-if="project.ideas.length > 0">
+              <v-col>
+                <v-card class="mx-auto" outlined>
+                  <div v-for="(idea, index) in project.ideas" :key="index">
+                    <v-list-item :to="`/ideas/${idea._id}`">
+                      <v-list-item-content>
+                        <v-list-item-title> {{ idea.name }} </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col>
-        <h4>Comments</h4>
-      </v-col>
-    </v-row>
+        <v-card outlined>
+          <v-card-title>Comments</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col v-if="loggedInUser">
+                <v-text-field
+                  v-model="comment"
+                  label="Add a comment"
+                  append-icon="mdi-send"
+                  outlined
+                  dense
+                  @click:append="postComment"
+                  @keyup.enter="postComment"
+                ></v-text-field>
+              </v-col>
+              <v-col v-else>
+                <v-text-field
+                  label="Log in to be able to comment"
+                  append-icon="mdi-send"
+                  disabled
+                  outlined
+                  dense
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-    <v-row>
-      <v-col v-if="loggedInUser">
-        <v-text-field
-          v-model="comment"
-          label="Add a comment"
-          append-icon="mdi-send"
-          outlined
-          dense
-          @click:append="postComment"
-          @keyup.enter="postComment"
-        ></v-text-field>
-      </v-col>
-      <v-col v-else>
-        <v-text-field
-          label="Log in to be able to comment"
-          append-icon="mdi-send"
-          disabled
-          outlined
-          dense
-        ></v-text-field>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <v-card v-if="project.comments.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(comment, index) in comments" :key="index">
-            <!-- <v-list-item-content>
-              <v-list-item-title>Single-line item</v-list-item-title>
-            </v-list-item-content> -->
-            <Comment :comment="comment" />
-          </v-list-item>
-        </v-card>
-        <v-card v-else class="mx-auto" outlined>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title> No comments </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+            <v-row>
+              <v-col>
+                <v-card
+                  v-if="project.comments.length > 0"
+                  class="mx-auto"
+                  outlined
+                >
+                  <v-list-item
+                    v-for="(comment, index) in comments"
+                    :key="index"
+                  >
+                    <Comment :comment="comment" />
+                  </v-list-item>
+                </v-card>
+                <v-card v-else class="mx-auto" outlined>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title> No comments </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
