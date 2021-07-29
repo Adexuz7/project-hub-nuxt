@@ -13,14 +13,11 @@
         @projectCreated="getProjects"
       />
     </v-row>
-    <!-- <v-row>
-      <v-col>
-        <NewProject v-if="$auth.$state.loggedIn" :selectCategories="categories" @projectCreated="getProjects"></NewProject>
-      </v-col>
-    </v-row> -->
     <v-row>
-      <v-col v-for="(project, index) in projects" :key="index">
-        <!-- <Project :project="project" @addlike="getProjects" /> -->
+      <v-col
+        v-for="(project, index) in projects.slice().reverse()"
+        :key="index"
+      >
         <Project :project="project" @addlike="addLike" />
       </v-col>
     </v-row>
@@ -52,13 +49,12 @@ export default {
     },
     toLogin() {
       this.router.push('/login')
-    }
+    },
   },
 }
 </script>
 
 <style scoped>
-
 h1 {
   display: flex;
   justify-content: center;
