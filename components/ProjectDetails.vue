@@ -34,6 +34,7 @@
       <v-row>
         <v-col>
           <v-chip
+            v-if="project.repository"
             class="border-label px-5"
             :input-value="false"
             label

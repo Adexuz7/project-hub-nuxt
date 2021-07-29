@@ -34,6 +34,7 @@
       <v-row>
         <v-col>
           <v-chip
+            v-if="project.repository"
             class="border-label px-5"
             :input-value="false"
             label
@@ -106,7 +107,8 @@ export default {
   computed: {
     image() {
       return (
-        this.project.image || 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib'
+        this.project.image ||
+        'https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib'
       )
     },
     date() {
