@@ -60,7 +60,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.BASE_URL || 'http://localhost:4000/api'
+    baseURL: process.env.BASE_URL || 'https://project-hub-back.herokuapp.com/api' // 'http://localhost:4000/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
