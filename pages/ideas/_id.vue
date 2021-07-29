@@ -20,7 +20,7 @@
         <v-card outlined>
           <v-card-title>Projects</v-card-title>
           <v-card-text>
-            <v-row>
+            <v-row v-if="loggedInUser">
               <v-col>
                 <v-btn block outlined @click="openModal">Add project</v-btn>
                 <v-overlay :dark="false" :value="overlay">
@@ -53,6 +53,15 @@
                           :items="categories"
                           label="Category"
                           item-value="id"
+                          item-text="name"
+                          return-object
+                          outlined
+                          dense
+                        ></v-select>
+                        <v-select
+                          v-model="team"
+                          :items="selectTeams"
+                          label="Team"
                           item-text="name"
                           return-object
                           outlined
@@ -180,6 +189,8 @@ export default {
     name: '',
     description: '',
     projectCategories: [],
+    team: null,
+    selectTeams: null
   }),
   computed: {
     ...mapGetters(['loggedInUser']),
@@ -215,12 +226,17 @@ export default {
         name: this.name,
         description: this.description,
         categories: this.projectCategories,
+        team: this.team
       })
 
       this.overlay = false
       this.idea = await this.$axios.$get(`/ideas/${this.id}`)
     },
   },
+  async mounted() {
+    if (this.loggedInUser)
+      this.selectTeams = await this.$axios.$get('/teams')
+  }
 }
 </script>
 
