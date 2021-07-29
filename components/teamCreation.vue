@@ -75,7 +75,7 @@ export default {
         name: this.teamName,
         description: this.description,
       })
-        this.open = false
+      this.open = false
       this.$root.$emit('team-created', newTeam.data)
     },
   },
