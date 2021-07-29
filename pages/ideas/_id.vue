@@ -17,61 +17,82 @@
 
     <v-row>
       <v-col>
-        <v-card>
+        <v-card outlined>
           <v-card-title>Projects</v-card-title>
           <v-card-text>
-             <v-btn block outlined @click="openModal">Add project</v-btn>
-        <v-overlay :dark="false" :value="overlay">
-          <v-form>
-            <v-card>
-              <v-card-text>
-                <v-btn class="mb-4" color="error" block outlined @click="closeModal">x</v-btn>
-                <v-text-field
-                      v-model="name"
-                      label="Name"
-                      outlined
-                      dense
-                    ></v-text-field>
-                    <v-textarea
-                      v-model="description"
-                      label="Description"
-                      no-resize
-                      outlined
-                      dense
-                    ></v-textarea>
-                    <v-select
-                      v-model="projectCategories"
-                      :items="categories"
-                      label="Category"
-                      item-value="id"
-                      item-text="name"
-                      return-object
-                      outlined
-                      dense
-                    ></v-select>
-                    <v-btn block color="primary" @click="newProject">
-                      New project
-                    </v-btn>
-              </v-card-text>
-            </v-card>
-          </v-form>
-        </v-overlay>
-        <v-card v-if="idea.projects.length > 0" class="mx-auto" outlined>
-          <div v-for="(project, index) in idea.projects" :key="index">
-            <v-list-item :to="`/projects/${project._id}`">
-              <v-list-item-content>
-                <v-list-item-title> {{ project.name }} </v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </div>
-        </v-card>
-        <v-card v-else class="mx-auto" outlined>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title> No projects </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-card>
+            <v-row>
+              <v-col>
+                <v-btn block outlined @click="openModal">Add project</v-btn>
+                <v-overlay :dark="false" :value="overlay">
+                  <v-form>
+                    <v-card>
+                      <v-card-text>
+                        <v-btn
+                          class="mb-4"
+                          color="error"
+                          block
+                          outlined
+                          @click="closeModal"
+                          >x</v-btn
+                        >
+                        <v-text-field
+                          v-model="name"
+                          label="Name"
+                          outlined
+                          dense
+                        ></v-text-field>
+                        <v-textarea
+                          v-model="description"
+                          label="Description"
+                          no-resize
+                          outlined
+                          dense
+                        ></v-textarea>
+                        <v-select
+                          v-model="projectCategories"
+                          :items="categories"
+                          label="Category"
+                          item-value="id"
+                          item-text="name"
+                          return-object
+                          outlined
+                          dense
+                        ></v-select>
+                        <v-btn block color="primary" @click="newProject">
+                          New project
+                        </v-btn>
+                      </v-card-text>
+                    </v-card>
+                  </v-form>
+                </v-overlay>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-card
+                  v-if="idea.projects.length > 0"
+                  class="mx-auto"
+                  outlined
+                >
+                  <div v-for="(project, index) in idea.projects" :key="index">
+                    <v-list-item :to="`/projects/${project._id}`">
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          {{ project.name }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </div>
+                </v-card>
+                <v-card v-else class="mx-auto" outlined>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title> No projects </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-card>
       </v-col>
@@ -85,46 +106,56 @@
 
     <v-row>
       <v-col>
-        <h4>Comments</h4>
-      </v-col>
-    </v-row>
+        <v-card outlined>
+          <v-card-title>Comments</v-card-title>
+          <v-card-text>
+            <v-row>
+              <v-col v-if="loggedInUser">
+                <v-text-field
+                  v-model="comment"
+                  label="Add a comment"
+                  append-icon="mdi-send"
+                  outlined
+                  dense
+                  @click:append="postComment"
+                  @keyup.enter="postComment"
+                ></v-text-field>
+              </v-col>
+              <v-col v-else>
+                <v-text-field
+                  label="Log in to be able to comment"
+                  append-icon="mdi-send"
+                  disabled
+                  outlined
+                  dense
+                ></v-text-field>
+              </v-col>
+            </v-row>
 
-    <v-row>
-      <v-col v-if="loggedInUser">
-        <v-text-field
-          v-model="comment"
-          label="Add a comment"
-          append-icon="mdi-send"
-          outlined
-          dense
-          @click:append="postComment"
-          @keyup.enter="postComment"
-        ></v-text-field>
-      </v-col>
-      <v-col v-else>
-        <v-text-field
-          label="Log in to be able to comment"
-          append-icon="mdi-send"
-          disabled
-          outlined
-          dense
-        ></v-text-field>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <v-card v-if="idea.comments.length > 0" class="mx-auto" outlined>
-          <v-list-item v-for="(comment, index) in comments" :key="index">
-            <Comment :comment="comment" />
-          </v-list-item>
-        </v-card>
-        <v-card v-else class="mx-auto" outlined>
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title> No comments </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+            <v-row>
+              <v-col>
+                <v-card
+                  v-if="idea.comments.length > 0"
+                  class="mx-auto"
+                  outlined
+                >
+                  <v-list-item
+                    v-for="(comment, index) in comments"
+                    :key="index"
+                  >
+                    <Comment :comment="comment" />
+                  </v-list-item>
+                </v-card>
+                <v-card v-else class="mx-auto" outlined>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-title> No comments </v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
