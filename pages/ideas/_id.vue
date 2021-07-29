@@ -214,7 +214,7 @@ export default {
       await this.$axios.$post(`/ideas/${this.id}/projects`, {
         name: this.name,
         description: this.description,
-        categories: this.categories,
+        categories: this.projectCategories,
       })
 
       this.overlay = false
