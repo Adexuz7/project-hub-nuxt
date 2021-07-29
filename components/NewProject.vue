@@ -63,16 +63,13 @@ export default {
       type: Array,
       default: null,
     },
-    selectTeams: {
-      type: Array,
-      default: null,
-    },
   },
   data: () => ({
     valid: true,
     name: null,
     description: null,
     categories: [],
+    selectTeams: null,
     team: null,
     open: false,
   }),
@@ -92,5 +89,8 @@ export default {
       this.$emit('projectCreated')
     },
   },
+  async mounted() {
+    this.selectTeams = await this.$axios.$get('/teams')
+  }
 }
 </script>
