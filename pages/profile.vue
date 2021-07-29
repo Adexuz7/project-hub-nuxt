@@ -26,7 +26,7 @@
               </v-col>
             </v-row>
 
-            <v-row class="text-center">
+            <!-- <v-row class="text-center">
               <v-col>
                 <v-icon>mdi-account-star</v-icon>
                 <span class="ml-2">{{ loggedInUser.follows.length }}</span>
@@ -35,7 +35,7 @@
                 <v-icon>mdi-account-multiple-check</v-icon>
                 <span class="ml-2">{{ loggedInUser.followers.length }}</span>
               </v-col>
-            </v-row>
+            </v-row> -->
 
             <v-row>
               <v-expansion-panels flat>
