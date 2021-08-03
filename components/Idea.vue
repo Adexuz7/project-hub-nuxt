@@ -44,13 +44,7 @@
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
-          <v-chip
-            v-else
-            class="border-label px-5"
-            label
-            outlined
-            @click="like"
-          >
+          <v-chip v-else class="border-label px-5" label outlined @click="like">
             <v-icon small left> mdi-thumb-up </v-icon>
             <span class="ml-1"> {{ likes }} </span>
           </v-chip>
@@ -84,10 +78,6 @@ export default {
       type: Object,
       default: null,
     },
-    allCategories: {
-      type: Array,
-      default: null,
-    },
   },
   data: () => ({
     author: {
@@ -111,15 +101,13 @@ export default {
       }
     },
     categories() {
-      const categoriesNames = []
+      const categories = []
 
-      this.allCategories.forEach((category) => {
-        this.idea.categories.forEach((ideaCategory) => {
-          if (ideaCategory === category._id) categoriesNames.push(category.name)
-        })
+      this.idea.categories.forEach((category) => {
+        categories.push(category.name)
       })
 
-      return categoriesNames.join(', ')
+      return categories.join(', ')
     },
     likes() {
       return this.idea.likes.length
@@ -142,7 +130,7 @@ export default {
 
         this.$emit('addLikesIdea', newIdea.data)
       } else {
-        this.$router.push({path: '/login', query:{requiresAuth: true}})
+        this.$router.push({ path: '/login', query: { requiresAuth: true } })
       }
     },
     seeMoreDetails() {

@@ -9,7 +9,6 @@
       <v-col>
         <IdeaDetails
           :idea="idea"
-          :all-categories="categories"
           @like="refresh"
         />
       </v-col>

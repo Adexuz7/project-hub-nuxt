@@ -71,10 +71,6 @@ export default {
       type: Object,
       default: null,
     },
-    allCategories: {
-      type: Array,
-      default: null,
-    },
   },
   data: () => ({
     author: 'Unknown',
@@ -89,15 +85,13 @@ export default {
       return new Date(this.idea.date).toDateString()
     },
     categories() {
-      const categoriesNames = []
+      const categories = []
 
-      this.allCategories.forEach((category) => {
-        this.idea.categories.forEach((ideaCategory) => {
-          if (ideaCategory === category._id) categoriesNames.push(category.name)
-        })
+      this.idea.categories.forEach((category) => {
+          categories.push(category.name)
       })
 
-      return categoriesNames.join(', ')
+      return categories.join(', ')
     },
     likes() {
       return this.idea.likes.length
