@@ -6,7 +6,7 @@
           <span class="title-idea">{{ idea.name }}</span>
         </v-list-item-title>
         <v-list-item-subtitle>
-          <span>{{ date }}, {{ author.name }}</span>
+          <span>{{ date }}, {{ idea.author.name }}</span>
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
@@ -79,11 +79,6 @@ export default {
       default: null,
     },
   },
-  data: () => ({
-    author: {
-      name: 'unknown',
-    },
-  }),
   computed: {
     liked() {
       if (this.isAuthenticated)
@@ -119,9 +114,6 @@ export default {
       return this.idea.projects.length
     },
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
-  },
-  async mounted() {
-    this.author = await this.$axios.$get(`/users/${this.idea.author}`)
   },
   methods: {
     async like() {
