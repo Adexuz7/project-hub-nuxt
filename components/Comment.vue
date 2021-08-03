@@ -6,7 +6,7 @@ no<template>
             <img alt="user" :src="image" />
           </v-avatar>
           <span>
-            <a class="author" :href="`/users/${author._id}`"><b>{{ author.name }}</b></a> · {{ date }}
+            <a class="author" :href="`/users/${comment.author._id}`"><b>{{ comment.author.name }}</b></a> · {{ date }}
           </span>
         </v-list-item-title>
         <span class="ml-12">{{ description }}</span>
@@ -22,13 +22,10 @@ export default {
       default: null,
     },
   },
-  data: () => ({
-    author: '',
-  }),
   computed: {
     image() {
       return (
-        this.author.image ||
+        this.comment.author.image ||
         'https://cdn.pixabay.com/photo/2020/06/24/19/12/cabbage-5337431_1280.jpg'
       )
     },
@@ -45,10 +42,6 @@ export default {
     likes() {
       return this.comment.likes.length
     },
-  },
-  async mounted() {
-    this.author = await this.$axios.$get(`/users/${this.comment.author}`)
-    this.allCategories = await this.$axios.$get('/categories')
   },
 }
 </script>
