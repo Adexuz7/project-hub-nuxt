@@ -66,7 +66,7 @@
                           outlined
                           dense
                         ></v-select>
-                        <v-btn block color="primary" @click="newProject">
+                        <v-btn @click="newProject" color="primary" outlined block>
                           New project
                         </v-btn>
                       </v-card-text>
