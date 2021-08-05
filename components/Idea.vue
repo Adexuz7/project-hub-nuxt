@@ -1,17 +1,17 @@
 <template>
   <v-card class="border-idea mx-auto" width="360" height="358" outlined>
     <v-list-item two-line>
-      <v-list-item-content class="title">
-        <v-list-item-title class="text-h5">
-          <span class="title-idea">{{ idea.name }}</span>
+      <v-list-item-content>
+        <v-list-item-title class="text-h6">
+          <span>{{ idea.name }}</span>
         </v-list-item-title>
-        <v-list-item-subtitle>
+        <v-list-item-subtitle class="text-subtitle-2">
           <span>{{ date }}, {{ idea.author.name }}</span>
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
-    <v-card-text>
+    <v-card-text class="text-body-2">
       <v-row>
         <v-col>
           <span class="description">{{ description }}</span>
@@ -20,13 +20,13 @@
 
       <v-row>
         <v-col>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-folder </v-icon>
-            <span class="ml-1"> {{ categories }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-folder </v-icon>
+            <span> {{ categories }} </span>
           </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-arm-flex </v-icon>
-            <span class="ml-1"> {{ idea.difficulty }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-arm-flex </v-icon>
+            <span> {{ idea.difficulty }} </span>
           </v-chip>
         </v-col>
       </v-row>
@@ -35,26 +35,25 @@
         <v-col>
           <v-chip
             v-if="liked"
-            class="border-label px-5"
+            class="border-label"
             color="#FF6D00"
-            label
             outlined
             @click="like"
           >
-            <v-icon small left> mdi-thumb-up </v-icon>
-            <span class="ml-1"> {{ likes }} </span>
+            <v-icon left> mdi-thumb-up </v-icon>
+            <span> {{ likes }} </span>
           </v-chip>
-          <v-chip v-else class="border-label px-5" label outlined @click="like">
-            <v-icon small left> mdi-thumb-up </v-icon>
-            <span class="ml-1"> {{ likes }} </span>
+          <v-chip v-else class="border-label" outlined @click="like">
+            <v-icon left> mdi-thumb-up </v-icon>
+            <span> {{ likes }} </span>
           </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-comment </v-icon>
-            <span class="ml-1"> {{ comments }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-comment </v-icon>
+            <span> {{ comments }} </span>
           </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-file </v-icon>
-            <span class="ml-1"> {{ projects }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-file </v-icon>
+            <span> {{ projects }} </span>
           </v-chip>
         </v-col>
       </v-row>

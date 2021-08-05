@@ -10,12 +10,12 @@
       <NewIdea
         v-if="isAuthenticated"
         :select-categories="categories"
-        @ideaCreated="getIdeas"
+        @ideaCreated="refresh"
       />
     </v-row>
     <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
-        <Idea v-if="isAuthenticated" :idea="idea" @addLikesIdea="addLikeIdea" />
+        <Idea v-if="isAuthenticated" :idea="idea" @addLikesIdea="refresh" />
         <Idea v-else :idea="idea" @addLikesIdea="toLogin" />
       </v-col>
     </v-row>
@@ -37,13 +37,8 @@ export default {
     ...mapGetters(['isAuthenticated']),
   },
   methods: {
-    async getIdeas() {
-      this.ideas = await this.$axios.$get('/ideas')
-    },
-    addLikeIdea(idea) {
-      const arr = this.ideas.map((idea) => idea._id)
-
-      this.ideas.splice(arr.indexOf(idea._id), 1, idea)
+    async refresh() {
+      this.ideas = await this.$axios.$get(`/ideas`)
     },
     toLogin() {
       this.rooter.push('/login')
