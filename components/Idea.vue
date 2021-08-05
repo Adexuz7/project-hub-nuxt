@@ -1,5 +1,5 @@
 <template>
-  <v-card class="border-idea mx-auto" width="360" height="358" outlined>
+  <v-card class="border-idea mx-auto" :width="width" :height="height" outlined>
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h6">
@@ -14,7 +14,8 @@
     <v-card-text class="text-body-2">
       <v-row>
         <v-col>
-          <span class="description">{{ description }}</span>
+          <span v-if="postIt" class="description">{{ description }}</span>
+          <span v-else>{{ description }}</span>
         </v-col>
       </v-row>
 
@@ -59,7 +60,7 @@
       </v-row>
     </v-card-text>
 
-    <v-card-actions>
+    <v-card-actions v-if="postIt">
       <v-spacer></v-spacer>
       <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails"
         >More details</v-btn
@@ -77,8 +78,20 @@ export default {
       type: Object,
       default: null,
     },
+    postIt: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
+    width() {
+      if (this.postIt) return 360
+      return '100%'
+    },
+    height() {
+      if (this.postIt) return 358
+      return '100%'
+    },
     liked() {
       if (this.isAuthenticated)
         return this.idea.likes.includes(this.loggedInUser._id)
@@ -88,11 +101,9 @@ export default {
       return new Date(this.idea.date).toDateString()
     },
     description() {
-      if (this.idea.description.length >= 199) {
+      if (this.postIt && this.idea.description.length >= 199)
         return this.idea.description.substring(0, 199) + ' ...'
-      } else {
-        return this.idea.description
-      }
+      return this.idea.description
     },
     categories() {
       const categories = []
@@ -119,7 +130,7 @@ export default {
       if (this.isAuthenticated) {
         const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
 
-        this.$emit('addLikesIdea', newIdea.data)
+        this.$emit('like', newIdea.data)
       } else {
         this.$router.push({ path: '/login', query: { requiresAuth: true } })
       }

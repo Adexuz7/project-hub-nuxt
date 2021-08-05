@@ -15,8 +15,8 @@
     </v-row>
     <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
-        <Idea v-if="isAuthenticated" :idea="idea" @addLikesIdea="refresh" />
-        <Idea v-else :idea="idea" @addLikesIdea="toLogin" />
+        <Idea v-if="isAuthenticated" :idea="idea" :post-it="true" @like="refresh" />
+        <Idea v-else :idea="idea" :post-it="true" @like="toLogin" />
       </v-col>
     </v-row>
   </v-container>

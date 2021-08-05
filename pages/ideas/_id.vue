@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <IdeaDetails
+        <Idea
           :idea="idea"
           @like="refresh"
         />
