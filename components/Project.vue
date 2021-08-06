@@ -1,5 +1,10 @@
 <template>
-  <v-card class="mx-auto border-project" :width="width" :height="height" outlined>
+  <v-card
+    class="mx-auto border-project"
+    :width="width"
+    :height="height"
+    outlined
+  >
     <v-img
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       class="align-center justify-center"
@@ -35,9 +40,8 @@
           <v-chip
             v-if="project.repository"
             class="border-label"
-            :input-value="false"
-            outlined
             @click="toGitHub"
+            outlined
           >
             <v-icon left> mdi-github </v-icon>
             <span> GitHub </span>
@@ -54,14 +58,14 @@
           <v-chip
             v-if="liked"
             class="border-label"
-            color="#FF6D00"
+            color="primary"
             outlined
             @click="like"
           >
             <v-icon left> mdi-thumb-up </v-icon>
             <span> {{ likes }} </span>
           </v-chip>
-          <v-chip v-else class="border-label" outlined @click="like">
+          <v-chip v-else class="border-label" @click="like" outlined>
             <v-icon left> mdi-thumb-up </v-icon>
             <span> {{ likes }} </span>
           </v-chip>
@@ -83,7 +87,7 @@
 
     <v-card-actions v-if="postIt">
       <v-spacer></v-spacer>
-      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails"
+      <v-btn class="mr-1" color="primary" text @click="seeMoreDetails"
         >More details</v-btn
       >
     </v-card-actions>
@@ -94,7 +98,6 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Project',
   props: {
     project: {
       type: Object,
@@ -155,13 +158,10 @@ export default {
   methods: {
     async like() {
       if (this.isAuthenticated) {
-        const newProject = await this.$axios.put(
-          '/projects/likes/' + this.project._id
-        )
-
-        this.$emit('addlike', newProject.data)
+        await this.$axios.put(`/projects/likes/${this.project._id}`)
+        this.$emit('like')
       } else {
-        this.$router.push({ path: '/login', query: { requiresAuth: true } })
+        this.$router.push('/login')
       }
     },
     toGitHub() {
@@ -188,10 +188,4 @@ export default {
   height: 154px;
   text-align: justify;
 }
-
-/* .container {
-  background-image: url("../assets/50-Beautiful-and-Minimalist-Presentation-Backgrounds-02.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
 </style>

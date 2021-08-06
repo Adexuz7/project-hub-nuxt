@@ -37,14 +37,14 @@
           <v-chip
             v-if="liked"
             class="border-label"
-            color="#FF6D00"
+            color="primary"
             outlined
             @click="like"
           >
             <v-icon left> mdi-thumb-up </v-icon>
             <span> {{ likes }} </span>
           </v-chip>
-          <v-chip v-else class="border-label" outlined @click="like">
+          <v-chip v-else class="border-label" @click="like" outlined>
             <v-icon left> mdi-thumb-up </v-icon>
             <span> {{ likes }} </span>
           </v-chip>
@@ -62,7 +62,7 @@
 
     <v-card-actions v-if="postIt">
       <v-spacer></v-spacer>
-      <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails"
+      <v-btn class="mr-1" color="primary" text @click="seeMoreDetails"
         >More details</v-btn
       >
     </v-card-actions>
@@ -92,11 +92,6 @@ export default {
       if (this.postIt) return 358
       return '100%'
     },
-    liked() {
-      if (this.isAuthenticated)
-        return this.idea.likes.includes(this.loggedInUser._id)
-      return false
-    },
     date() {
       return new Date(this.idea.date).toDateString()
     },
@@ -114,6 +109,11 @@ export default {
 
       return categories.join(', ')
     },
+    liked() {
+      if (this.isAuthenticated)
+        return this.idea.likes.includes(this.loggedInUser._id)
+      return false
+    },
     likes() {
       return this.idea.likes.length
     },
@@ -128,11 +128,10 @@ export default {
   methods: {
     async like() {
       if (this.isAuthenticated) {
-        const newIdea = await this.$axios.put('/ideas/likes/' + this.idea._id)
-
-        this.$emit('like', newIdea.data)
+        await this.$axios.put(`/ideas/likes/${this.idea._id}`)
+        this.$emit('like')
       } else {
-        this.$router.push({ path: '/login', query: { requiresAuth: true } })
+        this.$router.push('/login')
       }
     },
     seeMoreDetails() {

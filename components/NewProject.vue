@@ -42,7 +42,7 @@
                       outlined
                       dense
                     ></v-select>
-                    <v-btn block color="primary" @click="newProject">
+                    <v-btn @click="newProject" color="primary" outlined block>
                       New project
                     </v-btn>
                   </v-col>
@@ -82,7 +82,7 @@ export default {
       })
 
       await this.$axios.$put(`/projects/${newProject._id}`, {
-        team: this.team
+        team: this.team,
       })
 
       this.open = false
@@ -91,6 +91,6 @@ export default {
   },
   async mounted() {
     this.selectTeams = await this.$axios.$get('/teams')
-  }
+  },
 }
 </script>

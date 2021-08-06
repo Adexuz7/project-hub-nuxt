@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <Project :project="project" @addlike="refresh" />
+        <Project :project="project" @like="refresh" />
       </v-col>
     </v-row>
 

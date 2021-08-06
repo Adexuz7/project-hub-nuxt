@@ -18,7 +18,7 @@
         v-for="(project, index) in projects.slice().reverse()"
         :key="index"
       >
-        <Project :project="project" :post-it="true" @addlike="refresh" />
+        <Project :project="project" :post-it="true" @like="refresh" />
       </v-col>
     </v-row>
   </v-container>

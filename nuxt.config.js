@@ -95,7 +95,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.orange,
+          primary: '#FF6D00',
           navbar: colors.amber.lighten2,
         },
         dark: {

@@ -43,9 +43,10 @@
                     ></v-select>
                     <v-btn
                       :disabled="!valid"
-                      block
                       color="primary"
                       @click="newIdea"
+                      outlined
+                      block
                     >
                       New idea
                     </v-btn>

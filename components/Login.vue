@@ -49,15 +49,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-snackbar v-model="snackbar" color="orange darken-3" top>
-      You must be Logged in !!
-
-      <template v-slot:action="{ attrs }">
-        <v-btn color="black" text v-bind="attrs" @click="snackbar = false">
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-container>
 </template>
 
@@ -68,11 +59,7 @@ export default {
     password: '',
     show: false,
     error: null,
-    snackbar: false,
   }),
-  mounted() {
-    this.snackbar = this.$route.query.requiresAuth
-  },
   methods: {
     async login() {
       try {
