@@ -15,8 +15,7 @@
     </v-row>
     <v-row align="center">
       <v-col v-for="(idea, index) in ideas.slice().reverse()" :key="index">
-        <Idea v-if="isAuthenticated" :idea="idea" :post-it="true" @like="refresh" />
-        <Idea v-else :idea="idea" :post-it="true" @like="toLogin" />
+        <Idea :idea="idea" :post-it="true" @like="refresh" />
       </v-col>
     </v-row>
   </v-container>
@@ -38,10 +37,7 @@ export default {
   },
   methods: {
     async refresh() {
-      this.ideas = await this.$axios.$get(`/ideas`)
-    },
-    toLogin() {
-      this.rooter.push('/login')
+      this.ideas = await this.$axios.$get('/ideas')
     },
   },
 }

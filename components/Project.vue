@@ -1,5 +1,5 @@
 <template>
-  <v-card class="border-project mx-auto" width="360" height="500" outlined>
+  <v-card class="mx-auto border-project" :width="width" :height="height" outlined>
     <v-img
       gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
       class="align-center justify-center"
@@ -8,12 +8,12 @@
     >
       <v-list-item two-line>
         <v-list-item-content>
-          <v-list-item-title class="white--text text-h5">
+          <v-list-item-title class="text-h5 white--text">
             <span>
               <b>{{ project.name }}</b>
             </span>
           </v-list-item-title>
-          <v-list-item-subtitle class="white--text">
+          <v-list-item-subtitle class="text-subtitle-2 white--text">
             <span>
               <b>{{ date }}</b>
             </span>
@@ -22,12 +22,11 @@
       </v-list-item>
     </v-img>
 
-    <v-card-text>
-      <v-row align="center">
+    <v-card-text class="text-body-2">
+      <v-row>
         <v-col>
-          <span class="description">
-            <b>{{ description }}</b>
-          </span>
+          <span v-if="postIt" class="description">{{ description }}</span>
+          <span v-else>{{ description }}</span>
         </v-col>
       </v-row>
 
@@ -35,18 +34,17 @@
         <v-col>
           <v-chip
             v-if="project.repository"
-            class="border-label px-5"
+            class="border-label"
             :input-value="false"
-            label
             outlined
             @click="toGitHub"
           >
-            <v-icon small left> mdi-github </v-icon>
-            <span class="ml-1"> GitHub </span>
+            <v-icon left> mdi-github </v-icon>
+            <span> GitHub </span>
           </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-folder </v-icon>
-            <span class="ml-1"> {{ categories }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-folder </v-icon>
+            <span> {{ categories }} </span>
           </v-chip>
         </v-col>
       </v-row>
@@ -55,36 +53,35 @@
         <v-col>
           <v-chip
             v-if="liked"
-            class="border-label px-5"
+            class="border-label"
             color="#FF6D00"
-            label
             outlined
             @click="like"
           >
-            <v-icon small left> mdi-thumb-up </v-icon>
-            <span class="ml-1"> {{ likes }} </span>
+            <v-icon left> mdi-thumb-up </v-icon>
+            <span> {{ likes }} </span>
           </v-chip>
-          <v-chip v-else class="border-label px-5" label outlined @click="like">
-            <v-icon small left> mdi-thumb-up </v-icon>
-            <span class="ml-1"> {{ likes }} </span>
+          <v-chip v-else class="border-label" outlined @click="like">
+            <v-icon left> mdi-thumb-up </v-icon>
+            <span> {{ likes }} </span>
           </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-comment </v-icon>
-            <span class="ml-1"> {{ comments }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-comment </v-icon>
+            <span> {{ comments }} </span>
           </v-chip>
-          <v-chip class="border-label px-5" label outlined>
-            <v-icon small left> mdi-account-group </v-icon>
-            <span class="ml-1"> {{ team }} </span>
+          <v-chip class="border-label" outlined>
+            <v-icon left> mdi-account-group </v-icon>
+            <span> {{ team }} </span>
           </v-chip>
-          <v-chip class="border-label px-5" :input-value="false" label outlined>
-            <v-icon small left> mdi-lightbulb </v-icon>
-            <span class="ml-1"> {{ ideas }} </span>
+          <v-chip class="border-label" :input-value="false" outlined>
+            <v-icon left> mdi-lightbulb </v-icon>
+            <span> {{ ideas }} </span>
           </v-chip>
         </v-col>
       </v-row>
     </v-card-text>
 
-    <v-card-actions>
+    <v-card-actions v-if="postIt">
       <v-spacer></v-spacer>
       <v-btn class="mr-1" color="#FF6D00" text @click="seeMoreDetails"
         >More details</v-btn
@@ -103,8 +100,20 @@ export default {
       type: Object,
       default: null,
     },
+    postIt: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
+    width() {
+      if (this.postIt) return 360
+      return '100%'
+    },
+    height() {
+      if (this.postIt) return 500
+      return '100%'
+    },
     image() {
       return (
         this.project.image ||

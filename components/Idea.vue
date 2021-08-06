@@ -1,5 +1,5 @@
 <template>
-  <v-card class="border-idea mx-auto" :width="width" :height="height" outlined>
+  <v-card class="mx-auto border-idea" :width="width" :height="height" outlined>
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h6">

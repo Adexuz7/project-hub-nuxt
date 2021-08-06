@@ -7,11 +7,7 @@
     </v-row>
     <v-row>
       <v-col>
-        <ProjectDetails
-          :project="project"
-          :all-categories="categories"
-          @like="refresh"
-        />
+        <Project :project="project" @addlike="refresh" />
       </v-col>
     </v-row>
 

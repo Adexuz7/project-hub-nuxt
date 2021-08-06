@@ -10,7 +10,7 @@
       <NewProject
         v-if="isAuthenticated"
         :select-categories="categories"
-        @projectCreated="getProjects"
+        @projectCreated="refresh"
       />
     </v-row>
     <v-row>
@@ -18,7 +18,7 @@
         v-for="(project, index) in projects.slice().reverse()"
         :key="index"
       >
-        <Project :project="project" @addlike="addLike" />
+        <Project :project="project" :post-it="true" @addlike="refresh" />
       </v-col>
     </v-row>
   </v-container>
@@ -39,13 +39,8 @@ export default {
     ...mapGetters(['isAuthenticated']),
   },
   methods: {
-    async getProjects() {
+    async refresh() {
       this.projects = await this.$axios.$get('/projects')
-    },
-    addLike(project) {
-      const arr = this.projects.map((project) => project._id)
-
-      this.projects.splice(arr.indexOf(project._id), 1, project)
     },
     toLogin() {
       this.router.push('/login')
